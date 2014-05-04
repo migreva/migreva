@@ -15,7 +15,7 @@ require.config({
 //   }
 // );
 
-require(["index", "nav", "helpers", "webFonts/_lwf"], function(_lwf){
+require(["index", "nav", "helpers", "_lwf"], function(_lwf){
 
 
 });
