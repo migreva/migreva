@@ -1,0 +1,14 @@
+@mixin center-main-page{
+	width: 60%;
+	margin: 0 auto;
+}
+
+@mixin choice-mixin{
+	text-align: center;
+	display: inline-block;
+	margin: 0 auto;
+	width: 29%; // Leave 2% for margins on each side
+	margin: 0 2% 0 2%;
+	// cursor: pointer;
+	font-size: $choice-font-size;
+}

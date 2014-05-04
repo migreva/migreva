@@ -1,0 +1,34 @@
+@import 'mixin.scss';
+
+.welcome-text{
+
+	@include center-main-page;
+
+	margin-top: 10%;
+
+	h1, h2, h3, h4{
+		text-align: center;
+	}
+}
+
+.index-stuff hr{
+	width: 30%;
+}
+
+.selected-and-pre-moving{
+	position: absolute;
+	text-align: center;
+}
+
+.selected-and-moving{
+	// @include transition(top 1s ease-in 0s);
+	// @include transition(left 1s ease-in 0s);
+	@include transition(font-size 1s ease-in 0s);
+
+	@extend .page-title;
+	position: absolute;
+
+	hr{
+		display: none;
+	}
+}
