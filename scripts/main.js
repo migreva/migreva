@@ -15,7 +15,7 @@ require.config({
 //   }
 // );
 
-require(["index", "nav", "helpers", "lwf"], function(_lwf){
+require(["index", "nav", "helpers", "_lwf"], function(_lwf){
 
 
 });
