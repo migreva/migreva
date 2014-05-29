@@ -1,5 +1,6 @@
 @mixin center-main-page{
-	width: 60%;
+	// width: 60%;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -11,4 +12,18 @@
 	margin: 0 2% 0 2%;
 	// cursor: pointer;
 	font-size: $choice-font-size;
+	.text{
+		cursor: pointer;
+	}
+}
+
+@mixin page-title-stuff{
+	
+	float: left;
+	width: $page-title-width;
+	margin: 0 auto;
+	position: absolute;
+	left: $nav-menu-width;
+	font-size: 75px;
+	display: inline-block;
 }

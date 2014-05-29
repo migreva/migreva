@@ -17,7 +17,7 @@
 
 .selected-and-pre-moving{
 	position: absolute;
-	text-align: center;
+	// text-align: center;
 }
 
 .selected-and-moving{
@@ -25,8 +25,7 @@
 	// @include transition(left 1s ease-in 0s);
 	@include transition(font-size 1s ease-in 0s);
 
-	@extend .page-title;
-	position: absolute;
+	@include page-title-stuff;
 
 	hr{
 		display: none;

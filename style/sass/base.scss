@@ -1,18 +1,11 @@
 @import 'bourbon/bourbon';
+@import 'constants.scss';
 @import 'blog.scss';
 @import 'index.scss';
 @import 'mixin.scss';
 @import 'animations.scss';
 @import 'include.scss';
-
-$primary_color: #04819E;
-$text-color: #FFFFFF;
-$choice-font-size: 40px;
-$choice-height: 51px; // TODO always make sure this is right 
-$choice-margin: $choice-height - $choice-font-size; // Have to check this if font size changes
-
-$nav-choice-menu-width: 20%;
-$choice-selected-font-color: #B0B8BF;
+@import 'screen-size.scss';
 
 body {
 	background-color: $primary_color;
@@ -23,6 +16,11 @@ body {
 	// Font sizes
 	h1, h2, h3, h4{
 		font-size: xx-large;
+	}
+
+	.content{
+		display: none;
+		height: 100%;
 	}
 
 }
@@ -42,8 +40,13 @@ html body{
 
 .wf-active body{
 	@include transition(opacity 0.2s ease-in 0s);
-
+	
 	opacity: 1;
+
+	.content{
+		display: block;
+
+	}
 }
 
 .rearrange{
@@ -71,6 +74,7 @@ html body{
 
 	.choice{
 		@include choice-mixin;
+
 	}
 
 	.choice-hide{
@@ -82,12 +86,12 @@ html body{
 }
 
 .nav-choices-menu{
-	@include animation(fadeIn 1.0s ease-in);
-	display: fixed;
-	top: 0px;
-	left: 0px;
-	width: $nav-choice-menu-width;
-	opacity: 0;
+	@include transition(all .5s ease);
+	// display: fixed;
+	position: absolute;
+	top: $page-title-height;
+	width: $nav-menu-width;
+
 	.choice{
 		@include choice-mixin;
 		display: block;
@@ -124,16 +128,123 @@ html body{
 	.choice-hide{
 		display: none;
 	}
+
+}
+
+.externals{
+	height: $nav-menu-width;
+	cursor: pointer;
+	display: none;
+	width: 100%;
+
+	.external{
+		width: $nav-menu-width;
+		height: $nav-menu-width;
+		color: white;
+		float: left;
+		margin: 0 2.5px; 
+
+		.fa{
+			width: 100%;
+			font-size: $nav-menu-width * .9;
+			text-align: center;
+			top: $nav-menu-width * .05;
+			margin: auto 0;
+			position: relative;
+		}
+	}
+
+	.twitter:hover{
+		color: #4099FF;
+	}
+
+	.github:hover{
+		color: $github-black;;
+	}
+
+	.stack-overflow{
+		&:hover{
+			color: #f90;
+		}
+		.fa{	
+			font-size: $nav-menu-width * .7;
+			top: $nav-menu-width * .15;
+		}
+	}
+
+	.spotify:hover{
+		color: #7AB800;
+	}
+
+	.email{
+		&:hover{
+			color: black;
+		}	
+		.fa{
+			font-size: $nav-menu-width * .8;
+			top: $nav-menu-width * .1;
+		}
+	}
+	
+}
+
+.nav-menu-toggle:hover .nav-choices-menu{
+	display: blockw;
+}
+
+.page-title-container{
+	@include transition(all .5s ease);
+	width: 100%;
+	height: $page-title-height;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+
+	.nav-menu-toggle{
+		width: $nav-menu-width;
+		display: inline-block;
+		float: left;
+		height: 50%;
+		margin: 25px auto;
+
+		.burger-container{
+			width: 50%;
+			margin: 0 auto;
+			.burger{
+				width:100%;
+				cursor: pointer;
+
+			}
+		}
+	}
 }
 
 .page-title{
-
-	width: 60%;
-	margin: 0 auto;
-	// position: absolute;
+	@include transition(all .5s ease);
+	float: left;
+	width: $page-title-width;
 	top: 0px;
-	left: 0px;
-	// text-align: center;
+	// text-indent: 5%;
+	// margin: 20px auto 0 auto;
+	margin: 0 auto;
+	position: absolute;
+	left: $nav-menu-width;
 	font-size: 75px;
-
+	display: inline-block;
 }
+
+.page-title-hidden{
+	top: -$page-title-height;
+}
+
+.page-data{
+	margin-top: $page-title-height * 1.5;
+	margin-left: $nav-menu-width * 1.5;
+	width: 100%;
+
+	.data{
+		// opacity: 0;
+	}
+}
+

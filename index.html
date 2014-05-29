@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href=./style/css/base.css />
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 		<!-- <link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'> -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 		<!--<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>-->
@@ -11,8 +12,20 @@
 
 	<body>
 		<div class='content'>
-			<div class='page-title invisible'>
+			<div class='page-title-container page-title-hidden'>
+				<div class='nav-menu'>
+					<div class='nav-menu-toggle'>
+						<div class='burger-container'>
+							<i class="fa fa-bars fa-3x fa-fw burger"></i>
+						</div>
+					</div>
 
+				</div>
+
+				<div class='page-title'>
+
+
+				</div>
 			</div>
 
 
@@ -23,15 +36,25 @@
 					<h3>(.com)</h3>
 				</div>
 				<hr>
-				<div class='nav-choices'>
-					<div class='choice-hide'><a href="./">Home</a><hr></div>
-					<div class='choice'><a href="#blog">Blog</a><span class='nav-menu-selected-indicator'></span><hr></div>
-					<div class='choice'><a href="#resume">Resume</a><span class='nav-menu-selected-indicator'></span><hr></div>
-					<div class='choice'><a href="#contact">Contact</a><span class='nav-menu-selected-indicator'></span><hr></div>
+			</div>
+
+			<div class='nav-choices'>
+				<div class='choice-hide'><a href="./">Home</a><hr></div>
+				<div class='choice'><a href="#about" class='text'>About</a><span class='nav-menu-selected-indicator'></span><hr></div>
+				<div class='choice'><a href="#blog" class='text'>Blog</a><span class='nav-menu-selected-indicator'></span><hr></div>
+				<div class="choice"><span class='text'>Contact</span>
+					<div class="externals">
+						<div class=' external twitter'><a href="http://twitter.com/migreva"><i class="fa fa-twitter"></i></a></div>
+						<div class=' external github'><a href="http://github.com/migreva"><i class="fa fa-github-alt"></i></a></div>
+						<div class='external stack-overflow'><a href="http://stackoverflow.com/users/1337683/migreva"><i class="fa fa-stack-overflow"></i></a></div> 
+						<div class=' external spotify'><a href="http://open.spotify.com/user/123789431"><i class="fa fa-spotify"></i> </a></div>
+						<div class=' external email'><a href="mailto:mikevee313@gmail.com"><i class="fa fa-envelope-o"></i></a></div>
+					</div>
+					
 				</div>
 			</div>
 
-			<div class='page-data'>
+			<div class='page-data zero-opacity'>
 			</div>
 		</div>
 

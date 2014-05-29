@@ -1,1 +1,1 @@
-require.config({paths:{}});require(["index","nav","helpers","webFonts/_lwf"],function(e){});
+require.config({paths:{blog:"blog"}});require(["index","nav","helpers","lwf","fetch","constants"],function(e){fetch=new Fetch;fetch.init();var t=new Nav;t.init();helpers=new Helpers});

@@ -1,0 +1,17 @@
+$primary_color: #04819E;
+$text-color: #FFFFFF;
+$choice-font-size: 40px;
+$choice-height: 51px; // TODO always make sure this is right 
+$choice-margin: $choice-height - $choice-font-size; // Have to check this if font size changes
+
+$nav-choice-menu-width: 20%;
+$choice-selected-font-color: #B0B8BF;
+
+
+$nav-menu-width: 100px;
+// $nav-menu-toggle
+$page-title-width: auto;//100% - $nav-menu-width;
+
+$page-title-height: 100px;
+
+$github-black: #333333;
