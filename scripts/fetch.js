@@ -45,6 +45,17 @@ var Fetch = function(){
 		}
 	}
 
+	var showPage = function(className){
+		helpers.fadeOutAndHide($(".data:visible"), closure(className));
+
+		function closure(className){
+			var c = className;
+			return function(){
+				helpers.showAndFadeIn($(className));
+			}
+		}
+	}
+
 	function loadIntoDom(url, module, p){
 		$.get(url, function(data){
 			$(".page-data").append(data);
@@ -70,7 +81,8 @@ var Fetch = function(){
 
 	var publicAPI = {
 		init : init,
-		getPage : getPage
+		getPage : getPage,
+		showPage : showPage,
 	}
 	return publicAPI;
 }

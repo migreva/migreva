@@ -15,11 +15,13 @@ if __name__ == "__main__":
 
 	print """
 <div class='data blog'>
-	<div class='table-of-contents'>
+	<!--<div class='table-of-contents-container'>-->
+		<div class='table-of-contents'>
 """
 
 	html = ""
-
+	count = 0
+	NUMBLOGPOSTS = 20
 	for post_directory_name in os.listdir(posts_directory):
 
 		# Create the filepath
@@ -36,16 +38,23 @@ if __name__ == "__main__":
 			title_of_post = title_file_handle.read()
 
 			# Generate the HTML
-			html =  "\t\t<a href='{0}' class='contents-entry'>{1}</a>\n".format(blog_post_file, title_of_post) + html
+			html =  "\t\t<div class='contents-entry'><a href='{0}'>{1}</a><div class='indicator'></div></div>\n".format(blog_post_file, title_of_post) + html
 
 			# Close the file
 			title_file_handle.close()
+			count += 1
+
+	# title_of_post = "Tmp Post"
+	# while count < 20:
+	# 	html = "\t\t<div class='contents-entry'><a href='{0}'>{1}</a><div class='indicator'></div></div>\n".format(count, title_of_post) + html
+	# 	count += 1
 
 	print html
 
 	print """
-	</div>
-	<div class='blog-post-container'>
+		</div>
+	<!--</div>	-->
+	<div class='blog-post-container post'>
 	</div>
 </div>
 	"""

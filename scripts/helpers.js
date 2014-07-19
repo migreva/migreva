@@ -28,7 +28,7 @@ function Helpers(){
  			var $obj = $object;
  			var fn = callback;
  			return function(){
- 				$obj.addClass("hide");
+ 				$obj.addClass("display-none");
  				if (fn){
  					fn();
  				}
@@ -36,9 +36,15 @@ function Helpers(){
  		}
  	}
 
+ 	var showAndFadeIn = function($object){
+ 		$object.removeClass("display-none").animate({opacity: 1});
+
+ 	}
+
 	publicApi = {
 		makeCopyOnTop : makeCopyOnTop,
-		fadeOutAndHide : fadeOutAndHide
+		fadeOutAndHide : fadeOutAndHide,
+		showAndFadeIn : showAndFadeIn,
 	}
 
 	return publicApi;

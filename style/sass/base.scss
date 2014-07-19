@@ -6,6 +6,18 @@
 @import 'animations.scss';
 @import 'include.scss';
 @import 'screen-size.scss';
+@import 'page_layout.scss';
+
+*{	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+html{
+	height: 100%;
+	width: 100%;
+}
 
 body {
 	background-color: $primary_color;
@@ -15,27 +27,30 @@ body {
 
 	// Font sizes
 	h1, h2, h3, h4{
-		font-size: xx-large;
+		// font-size: xx-large;
+		font-size: 2em;
 	}
 
 	.content{
 		display: none;
 		height: 100%;
 	}
+	height: 100%;
+	width: 100%;
 
 }
 
-a{
-	color: inherit;
-	text-decoration: none;
+.body-grey-out{
+	// color: grey;
 }
+
 
 h4{
 	color: white;
 }
 
 html body{
-	opacity: 0;
+	opacity: 1;
 }
 
 .wf-active body{
@@ -72,6 +87,11 @@ html body{
 
 	margin-top: 50px;
 
+	a{
+		color: inherit;
+		text-decoration: none;
+	}
+
 	.choice{
 		@include choice-mixin;
 
@@ -83,6 +103,45 @@ html body{
 	hr{
 		display: none;
 	}
+
+	.externals{
+		// width: 80%;
+		width: $nav-menu-width * 6;
+		margin: 20px auto;
+		display: block;
+		a{
+
+		}
+		.external{
+			width: 20%;
+			font-size: $nav-menu-width * .9;
+
+			height: $nav-menu-width;
+		}	
+		.stack-overflow{
+			&:hover{
+				color: #f90;
+			}
+			.fa{	
+				font-size: $nav-menu-width * .9;
+				top: $nav-menu-width * .15;
+			}
+		}
+
+		.spotify:hover{
+			color: #7AB800;
+		}
+
+		.email{
+			&:hover{
+				color: black;
+			}	
+			.fa{
+				font-size: $nav-menu-width * .8;
+				top: $nav-menu-width * .1;
+			}
+		}
+	}
 }
 
 .nav-choices-menu{
@@ -91,6 +150,13 @@ html body{
 	position: absolute;
 	top: $page-title-height;
 	width: $nav-menu-width;
+	height: 100%;
+	a{
+		color: inherit;
+		text-decoration: none;
+	}
+	// overflow-y: scroll;
+	// overflow: auto;
 
 	.choice{
 		@include choice-mixin;
@@ -128,64 +194,73 @@ html body{
 	.choice-hide{
 		display: none;
 	}
-
-}
-
-.externals{
-	height: $nav-menu-width;
-	cursor: pointer;
-	display: none;
-	width: 100%;
-
 	.external{
-		width: $nav-menu-width;
-		height: $nav-menu-width;
-		color: white;
-		float: left;
-		margin: 0 2.5px; 
 
 		.fa{
 			width: 100%;
-			font-size: $nav-menu-width * .9;
+			font-size: $nav-menu-width * .5;
 			text-align: center;
 			top: $nav-menu-width * .05;
 			margin: auto 0;
 			position: relative;
 		}
 	}
+}
 
-	.twitter:hover{
-		color: #4099FF;
+.externals{
+	height: $nav-menu-width;
+	cursor: pointer;
+	// display: none;
+	width: 100%;
+	// background: grey;
+	// position: absolute;
+	z-index: $dim-z-index + 1;
+
+	.external{
+		width: $nav-menu-width;
+		height: $nav-menu-width * .7;
+		color: white;
+		float: left;
+		// margin: 0 2.5px; 
+		background: $primary_color;
+
+	}	
+}
+
+.twitter{
+	.fa:hover{
+	color: #4099FF;
+
 	}
+}
 
-	.github:hover{
-		color: $github-black;;
+.github{
+	.fa:hover{
+		color: $github-black;
 	}
+}
 
-	.stack-overflow{
-		&:hover{
-			color: #f90;
-		}
-		.fa{	
-			font-size: $nav-menu-width * .7;
-			top: $nav-menu-width * .15;
-		}
+.stack-overflow{
+	.fa:hover{
+		color: #f90;
 	}
+}
 
-	.spotify:hover{
+.spotify{
+	.fa:hover{
 		color: #7AB800;
 	}
+}
 
-	.email{
-		&:hover{
-			color: black;
-		}	
-		.fa{
-			font-size: $nav-menu-width * .8;
-			top: $nav-menu-width * .1;
-		}
-	}
-	
+.email{
+	.fa:hover{
+		color: black;
+	}	
+}
+
+.externals-show{
+	display: inline-block;
+	top: -($nav-menu-width * 5/2);
 }
 
 .nav-menu-toggle:hover .nav-choices-menu{
@@ -239,12 +314,31 @@ html body{
 }
 
 .page-data{
-	margin-top: $page-title-height * 1.5;
-	margin-left: $nav-menu-width * 1.5;
+	// margin-top: $page-title-height * 1.5;
+	// margin-left: $nav-menu-width * 1.5;
+	padding: $nav-menu-width $nav-menu-width * 1.5;
 	width: 100%;
 
 	.data{
 		// opacity: 0;
+		width: 100%;
 	}
+}
+
+.dim{
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	opacity: .5;
+	// opacity: .8;
+	// display: none;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index: $dim-z-index;
+}
+
+.about{
+	@include post-text;
 }
 

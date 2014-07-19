@@ -112,8 +112,6 @@ var Nav = function(){
 		}
 	}
 
-
-
 	var arrangeChoices = function(clickedChoice){
 		// Set up the nav menu and stuff
 		if (curNavMode == navModeIndex){ 
@@ -162,8 +160,22 @@ var Nav = function(){
 		arrangeChoices(clickedChoice);
 	}
 
+	function toggleDarkenScreen(){
+		$(".dim").toggleClass("display-none").toggleClass("display-block");
+		$("body").toggleClass("body-grey-out");
+	}
+
 	function toggleExternals(evt){
-		$(".externals").toggle(); // Click handler is for the <span> text, so need to find siblings
+		$(".externals").toggleClass("externals-show"); // Click handler is for the <span> text, so need to find siblings
+		toggleDarkenScreen();
+		$(".dim").click(function(evt){
+			$(".externals").toggleClass("externals-show"); 
+			toggleDarkenScreen();
+			$(this).unbind("click");
+			evt.stopPropagation();
+			evt.stopImmediatePropagation();
+			evt.preventDefault();
+		});
 	}
 
 	// Register the click event for each one of the choices, and
@@ -201,9 +213,16 @@ var Nav = function(){
 
 	// Load the page. clickedChoice is of type Choice
 	function getPage(clickedChoice){
-		var href = clickedChoice.getHref();
-		fetch.getPage(href);
 
+		console.log(clickedChoice.getDivClass());
+		var collection = $(clickedChoice.getDivClass());
+		if (collection.length == 0){
+			var href = clickedChoice.getHref();
+			fetch.getPage(href);			
+		}
+		else{
+			fetch.showPage(clickedChoice.getDivClass());
+		}
 	}
 
 
@@ -215,6 +234,7 @@ var Nav = function(){
 
 var Choice = function(){
 	var name = "";
+	var divClass = "";
 	var $this;
 	var href; 
 	var navMode = "";
@@ -224,6 +244,7 @@ var Choice = function(){
 	var init = function(name, htmlObj, navMode){
 		if (name){
 			this.name = name;
+			this.divClass = "." + name.toLowerCase();
 		}
 
 		if (htmlObj){
@@ -263,6 +284,10 @@ var Choice = function(){
 		return this.href;
 	}
 
+	var getDivClass = function(){
+		return this.divClass;
+	}
+
 	/* Setters */
 	var setNavMode = function(navMode){
 		if (navMode){
@@ -288,6 +313,7 @@ var Choice = function(){
 		getNavMode : getNavMode,
 		getName : getName,
 		getHref : getHref,
+		getDivClass : getDivClass,
 
 
 		/* Setters */

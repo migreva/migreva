@@ -25,14 +25,13 @@ var Blog = function(){
 			blogPost.init($(this));
 
 			$(this).click(blogPost.clickHandler());
-			// $(this).click(function(evt){
-			// 	console.log("Clicked");
-			// 	evt.stopPropagation();
-			// 	evt.stopImmediatePropagation();
-			// 	evt.preventDefault;
-			// });
 
 			blogPosts.push(blogPost);
+
+			// If this is the first table of contents entry, load it up on the page
+			if (blogPosts.length == 1){
+				blogPosts[0].getJqueryObj().trigger("click");
+			}
 
 		}
 	}
@@ -53,16 +52,22 @@ var BlogPost = function(){
 	var init = function($inputObj){ 
 		if ($inputObj){
 			this.$obj = $inputObj;
-			this.blogPostFile = $inputObj.attr("href");
+			this.blogPostFile = $inputObj.find("a").attr("href");
 		}
 	}	
+
+	var getJqueryObj = function(){
+		return this.$obj;
+	}
 
 	var clickHandler = function(){
 
 		var fileToFetch = this.blogPostFile;
+		var $obj = this.$obj;
 		return function(evt){
-			console.log(fileToFetch)
 			$(".blog-post-container").load(fileToFetch);
+			$(".contents-entry .clicked").removeClass("clicked");
+			$obj.find(".indicator").addClass("clicked");
 
 			evt.stopPropagation();
 			evt.stopImmediatePropagation();
@@ -73,6 +78,9 @@ var BlogPost = function(){
 	publicAPI = {
 		init : init,
 		clickHandler : clickHandler,
+
+		/* Getters */
+		getJqueryObj : getJqueryObj,
 	}
 	return publicAPI;
 }
