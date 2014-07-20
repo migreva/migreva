@@ -1,0 +1,11 @@
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+  background-color: green;
+  /* Styles */ }
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+  background-color: green;
+  /* Styles */ }
+@media only screen and (max-width: 480px) {
+  .nav-choice-menu {
+    width: 30%; } }

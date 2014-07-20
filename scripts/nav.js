@@ -1,7 +1,4 @@
 require([], function(){
-
-	var nav = new Nav();
-	nav.init();
 	
 });
 
@@ -41,10 +38,8 @@ var Nav = function(){
 
 			$(".content").addClass("rearrange");
 			setUpPage(hrefAttributes[documentHash], true, fadeInContent);
-			// $(".content").removeClass("rearrange").addClass("fadeIn");
 		}
 		else{
-
 			curNavMode = navModeIndex;
 		}
 	}
@@ -57,13 +52,7 @@ var Nav = function(){
 		// Fade out the choices text 
 		$(".index-stuff").animate({opacity: 0}, function(){ // Now move stuff around.
 			$(".page-title").text(clickedChoice.getName());
-
-			if (!noAnimation){
-				clickedChoice.setAsClicked();
-			}
-			else{
-				$(".page-title").removeClass("invisible");
-			}
+			$(".page-title-container").toggleClass("page-title-hidden")
 
 			// Remove the welcome text
 			$welcomeText.remove();
@@ -78,52 +67,50 @@ var Nav = function(){
 			$(".choice.invisible").removeClass("choice invisible").addClass("choice-hide");
 
 			// Move navChoices around
-			$navChoices.detach();
-			$(".content").append($navChoices);
+			// $navChoices.detach();
+			$(".nav-menu").append($navChoices);
 
 			// Grey out currently selected choice, fade in nav menu
-			$navChoices.removeClass("nav-choices").addClass("nav-choices-menu");
+			$navChoices.removeClass("nav-choices").addClass("nav-choices-menu navMenuSlideOut");
 			clickedChoice.greyOut();
 
-			//TODO figure out why that css animation wont work
-			$navChoices.animate({opacity: 1});
-			// $(this).hide();
+			// Activate the nav-menu click handler
+			$(".nav-menu-toggle .burger").click(navMenuToggle());
+
+			$(".page-data").addClass("fadeIn").removeClass("zero-opacity");
 
 			if (callback){
 				callback();
 			}
+
+			getPage(clickedChoice);
 		});
+	}
+
+	function navMenuToggle(){
+		var $navChoicesMenu = $(".nav-choices-menu");
+		var slideInClass = "navMenuSlideIn"
+		var slideOutClass = "navMenuSlideOut";
+		var slideClassToggle = slideInClass + " " + slideOutClass;
+		return function(evt){
+			$navChoicesMenu.toggleClass(slideClassToggle);
+		}
 	}
 
 	var changePageTitle = function(newTitle){
 			
 		var $pageTitle = $(".page-title");
-		var pageTitleHeight = $pageTitle.height() ;
+		$pageTitle.get(0).addEventListener("transitionend", changeTitleHandler(newTitle), false);
+		$pageTitle.addClass("page-title-hidden");
 
-		// Make a copy and place it over the currently existing title
-		var $copy = helpers.makeCopyOnTop($pageTitle);
-		$pageTitle.addClass("invisible");
-		$("body").append($copy);
-
-
-		$copy.animate({top : pageTitleHeight * -1 }, moveTitleBack(newTitle, $pageTitle));
-
-		function moveTitleBack(newTitle, $pageTitle){
-
+		function changeTitleHandler(t){
+			var title = t;
 			return function(){
-				// Set the texts
-				$pageTitle.text(newTitle);
-				$(this).text(newTitle);
-
-				$(this).animate({top : 0}, function(){
-					$(".page-title").removeClass("invisible");
-					$(this).remove();
-				});
+				$(".page-title").text(title).removeClass("page-title-hidden");
 			}
+
 		}
 	}
-
-
 
 	var arrangeChoices = function(clickedChoice){
 		// Set up the nav menu and stuff
@@ -156,6 +143,9 @@ var Nav = function(){
 
 			// Change the page title
 			changePageTitle(clickedChoice.getName());
+
+			// Load the page
+			getPage(clickedChoice);
 		}
 	}
 
@@ -166,20 +156,26 @@ var Nav = function(){
 		clickedChoice = choice; // Save the currently clicked choice
 		var choiceNavMode = choice.getNavMode();
 
+		// Arrange choices as needed
 		arrangeChoices(clickedChoice);
-		// Figure out how we're navigating. If it's on the index page,
-		// we have to re-arrange the choices 
-		if (choiceNavMode == navModeIndex){
-			
-		}
-		else if (choiceNavMode == navModeNav){
+	}
 
-		}
-		
+	function toggleDarkenScreen(){
+		$(".dim").toggleClass("display-none").toggleClass("display-block");
+		$("body").toggleClass("body-grey-out");
+	}
 
-		// evt.stopPropagation();
-		// evt.stopImmediatePropagation();
-		// evt.preventDefault();
+	function toggleExternals(evt){
+		$(".externals").toggleClass("externals-show"); // Click handler is for the <span> text, so need to find siblings
+		toggleDarkenScreen();
+		$(".dim").click(function(evt){
+			$(".externals").toggleClass("externals-show"); 
+			toggleDarkenScreen();
+			$(this).unbind("click");
+			evt.stopPropagation();
+			evt.stopImmediatePropagation();
+			evt.preventDefault();
+		});
 	}
 
 	// Register the click event for each one of the choices, and
@@ -188,15 +184,20 @@ var Nav = function(){
 
 		var hrefAttributes = hrefAttributes
 		return function(index, value){
-			var choiceName = $(this).text();
+
+			var choiceName = $(this).find(".text").text();//.replace(" ", "");
 			var nextIndex = choices.length;
 
 			var choiceObj = new Choice();
 			choiceObj.init(choiceName, $(this), navModeIndex);
 
-
 			// Register click handler
-			choiceObj.obj().find("a").click(choiceClickHandler);
+			if ($(this).children("a").length){
+				choiceObj.obj().find("a").click(choiceClickHandler);
+			}
+			else if (choiceName.toLowerCase() == "contact"){
+				$(this).find(".text").click(toggleExternals);
+			}
 
 			// Get object's href tag
 			console.log(choiceObj.getHref());
@@ -210,6 +211,20 @@ var Nav = function(){
 		
 	}
 
+	// Load the page. clickedChoice is of type Choice
+	function getPage(clickedChoice){
+
+		console.log(clickedChoice.getDivClass());
+		var collection = $(clickedChoice.getDivClass());
+		if (collection.length == 0){
+			var href = clickedChoice.getHref();
+			fetch.getPage(href);			
+		}
+		else{
+			fetch.showPage(clickedChoice.getDivClass());
+		}
+	}
+
 
 	var publicAPI = {
 		init : init
@@ -219,6 +234,7 @@ var Nav = function(){
 
 var Choice = function(){
 	var name = "";
+	var divClass = "";
 	var $this;
 	var href; 
 	var navMode = "";
@@ -228,6 +244,7 @@ var Choice = function(){
 	var init = function(name, htmlObj, navMode){
 		if (name){
 			this.name = name;
+			this.divClass = "." + name.toLowerCase();
 		}
 
 		if (htmlObj){
@@ -240,42 +257,6 @@ var Choice = function(){
 		}
 	}
 
-	var setAsClicked = function(){
-
-		// Get coordinates, etc
-		var curOffset = this.$this.offset();
-		var width = this.$this.width();
-		var fontSize = this.$this.css("font-size");
-
-		// Detach it from choices
-		// Make a clone of it
-		var copy = this.$this.get(0).cloneNode(true);
-		$copy = $(copy);
-
-		// Create the title object that we're going to animate towards
-		// and get it's offset
-		var targetOffest = $(".page-title").offset();
-
-		// Add it back to the spot where the user clicked
-		$copy.addClass("selected-and-pre-moving");
-		$copy.offset(curOffset);
-		$copy.width(width);
-
-		// Put it back in the body object (display it), and animate
-		$("body").append($copy);
-		$copy.removeClass("selected-and-pre-moving").addClass("selected-and-moving");
-		$copy.animate({top: targetOffest.top, left: targetOffest.left}, function(){
-			$(".page-title").removeClass("invisible");
-			$copy.remove();
-		});
-
-		// $this.remove();
-		// $this = $(newDOMObject);
-
-		
-		// $this.show();
-	}
-
 	var greyOut = function(){
 		this.$this.addClass("selected");
 	}
@@ -284,6 +265,7 @@ var Choice = function(){
 	function getCenteredCoordinates(width){
 
 	}
+
 
 	/* Getters */
 	var obj = function(){
@@ -300,6 +282,10 @@ var Choice = function(){
 
 	var getHref = function(){
 		return this.href;
+	}
+
+	var getDivClass = function(){
+		return this.divClass;
 	}
 
 	/* Setters */
@@ -320,7 +306,6 @@ var Choice = function(){
 
 	var publicAPI = {
 		init : init,
-		setAsClicked : setAsClicked,
 		greyOut : greyOut,
 
 		/* Getters */
@@ -328,6 +313,7 @@ var Choice = function(){
 		getNavMode : getNavMode,
 		getName : getName,
 		getHref : getHref,
+		getDivClass : getDivClass,
 
 
 		/* Setters */

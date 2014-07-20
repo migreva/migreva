@@ -1,6 +1,5 @@
 require([], function(){
 	// Make a global helpers object
-	helpers = new Helpers();
 });
 
 
@@ -20,10 +19,32 @@ function Helpers(){
 		$copy.offset(titleOffset);
 		
 		return $copy;
-	}
+ 	}
+
+ 	var fadeOutAndHide = function($object, callback){
+ 		$object.animate({opacity: 0}, closure($object, callback));
+
+ 		function closure($object, callback){
+ 			var $obj = $object;
+ 			var fn = callback;
+ 			return function(){
+ 				$obj.addClass("display-none");
+ 				if (fn){
+ 					fn();
+ 				}
+ 			}
+ 		}
+ 	}
+
+ 	var showAndFadeIn = function($object){
+ 		$object.removeClass("display-none").animate({opacity: 1});
+
+ 	}
 
 	publicApi = {
 		makeCopyOnTop : makeCopyOnTop,
+		fadeOutAndHide : fadeOutAndHide,
+		showAndFadeIn : showAndFadeIn,
 	}
 
 	return publicApi;

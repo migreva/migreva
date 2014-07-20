@@ -1,9 +1,53 @@
 @keyframes fadeIn{
 	from{
 		opacity: 0;
+		display: block;
 	}
 
 	to{
 		opacity: 1;
+	}
+}
+
+@keyframes fadeOut{
+	from{
+		opacity: 1;
+	}
+
+	to{
+		opacity: 0;
+	}
+}
+
+$wiggle-room: 5px;
+@keyframes navmenuslidein{
+	0%{
+		left: -$nav-menu-width;
+	}
+	50%{
+		left: $wiggle-room;
+	}
+	75%{
+		left: -$wiggle-room;
+	}
+	90%{
+		left: $wiggle-room * .5;
+	}
+
+	100%{
+		left: 0;
+	}
+}
+
+@keyframes navmenuslideout{
+	0%{
+		left: 0;
+	}
+	25%{
+		left: $wiggle-room;
+	}
+
+	100%{
+		left: -$nav-menu-width;
 	}
 }

@@ -1,5 +1,6 @@
 @mixin center-main-page{
-	width: 60%;
+	// width: 60%;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -7,8 +8,41 @@
 	text-align: center;
 	display: inline-block;
 	margin: 0 auto;
-	width: 29%; // Leave 2% for margins on each side
+	width: 45%; // Leave 2% for margins on each side
 	margin: 0 2% 0 2%;
 	// cursor: pointer;
 	font-size: $choice-font-size;
+	.text{
+		cursor: pointer;
+	}
+}
+
+@mixin page-title-stuff{
+	
+	float: left;
+	width: $page-title-width;
+	margin: 0 auto;
+	position: absolute;
+	left: $nav-menu-width;
+	font-size: 75px;
+	display: inline-block;
+}
+
+@mixin externals-mixin{
+	
+	height: $nav-menu-width;
+	cursor: pointer;
+	// display: none;
+	width: 100%;
+	// background: grey;
+	// position: absolute;
+	z-index: $dim-z-index + 1;
+}
+
+@mixin post-text{
+	// font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	color: black;
+	background: white;
+	width: 80%;
 }
