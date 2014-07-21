@@ -10,7 +10,7 @@ NO_POSTS = "<div class='no-posts'>Hey! Thanks for visitng my blog. I'll have som
 
 
 def is_valid_directory(directory_name):
-	return re.match("post([0-9]+)", directory_name) is not None
+	return re.match("([0-9]+)", directory_name) is not None
 
 
 if __name__ == "__main__":
@@ -20,13 +20,14 @@ if __name__ == "__main__":
 	html = ""
 	count = 0
 	blog_posts = False
-	for post_directory_name in os.listdir(posts_directory):
-		
+	for post_directory_name in os.listdir(posts_directory):	
 
 		# Create the filepath
 		directory_name = os.path.join(posts_directory, post_directory_name)
 		directory_path = os.path.join(posts_directory_path, post_directory_name)
-		if os.path.isdir(directory_name) and is_valid_directory(post_directory_name):
+		if os.path.isdir(directory_name) and is_valid_directory(post_directory_name):				
+			if not blog_posts:
+				print "\t<div class='table-of-contents'>"
 			blog_posts = True
 			
 			# Get all the file names in the directory
@@ -44,15 +45,17 @@ if __name__ == "__main__":
 			title_file_handle.close()
 			count += 1
 
-	if blog_posts:
-		print "\t<div>"
-		print "\t<div class='blog-post-container post'></div>"
-
 	if not blog_posts:
 		html += NO_POSTS
 
 	print html
 
+	if blog_posts:
+		print "\t</div>"
+		print "\t<div class='blog-post-container post'></div>"
+
+
 	print "</div>"
+
 
 

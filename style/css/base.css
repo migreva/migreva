@@ -50,6 +50,52 @@
   text-align: center;
   font-size: 5em; }
 
+/* For all cool blog-post related css */
+.post .toggle-section .toggle-section-stuff {
+  margin: 0 2.5%; }
+.post .toggle-section:after {
+  content: "";
+  border-bottom: 1px solid black; }
+.post .toggle-section h3 {
+  display: block;
+  cursor: pointer;
+  text-indent: 30px; }
+  .post .toggle-section h3:before {
+    width: 0;
+    height: 0;
+    border-left: 0.75em solid grey;
+    border-top: 0.375em solid transparent;
+    border-bottom: 0.375em solid transparent;
+    display: block;
+    content: "";
+    color: grey;
+    position: absolute;
+    float: right;
+    padding-left: 0px;
+    margin-top: .2em; }
+.post .toggle-section .toggle-section-stuff {
+  display: none; }
+.post .toggle-section hr {
+  width: 50%; }
+.post .toggle-section-clicked .toggle-section-stuff {
+  margin: 0 2.5%; }
+.post .toggle-section-clicked:after {
+  content: "";
+  border-bottom: 1px solid black; }
+.post .toggle-section-clicked h3:before {
+  width: 0;
+  height: 0;
+  border-left: 0.375em solid transparent;
+  border-right: 0.375em solid transparent;
+  border-top: 0.75em solid grey;
+  display: block;
+  content: "";
+  color: grey;
+  position: absolute;
+  margin-top: .2em; }
+.post .toggle-section-clicked .toggle-section-stuff {
+  display: block; }
+
 .welcome-text {
   width: 100%;
   margin: 0 auto;

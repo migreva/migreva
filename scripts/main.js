@@ -8,7 +8,7 @@ require.config({
 	// waitSeconds: 15
 });
 
-require(["index", "nav", "helpers", "lwf", "fetch", "constants"], function(_lwf){
+require(["index", "nav", "helpers", "lwf", "fetch", "constants"], function(){
 
 	fetch = new Fetch();
 	fetch.init();

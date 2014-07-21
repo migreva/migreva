@@ -46,3 +46,32 @@
 	background: white;
 	width: 80%;
 }
+
+@mixin h3-triange-right{
+	width: 0; 
+	height: 0; 
+	border-left: (1.5em / 2) solid grey; 
+	border-top: (1.5em / 4) solid transparent; 
+	border-bottom: (1.5em / 4) solid transparent; 
+	display: block;
+}
+
+@mixin h3-triange-down{
+	width: 0; 
+	height: 0; 
+	border-left: (1.5em / 4) solid transparent; 
+	border-right: (1.5em / 4) solid transparent; 
+	border-top: (1.5em / 2) solid grey;
+	display: block;
+}
+
+@mixin toggle-section{
+	
+	& .toggle-section-stuff{
+		margin: 0 2.5%;	
+	}
+	&:after{
+		content: "";
+		border-bottom: 1px solid black;
+	}
+}

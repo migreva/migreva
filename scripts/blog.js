@@ -49,6 +49,17 @@ var BlogPost = function(){
 	var $obj;
 	var blogPostFile;
 
+	var classesToInit = {
+		"Toggle Section Headers" : {
+			lookup : ".toggle-section h3",
+			init: function($obj){
+				$obj.click(function(){
+					$(this).parent().toggleClass('toggle-section-clicked');
+				});
+			}
+		}
+	}
+
 	var init = function($inputObj){ 
 		if ($inputObj){
 			this.$obj = $inputObj;
@@ -65,13 +76,30 @@ var BlogPost = function(){
 		var fileToFetch = this.blogPostFile;
 		var $obj = this.$obj;
 		return function(evt){
-			$(".blog-post-container").load(fileToFetch);
+			$(".blog-post-container").load(fileToFetch, function(){
+				initBlogPostItems();
+			});
 			$(".contents-entry .clicked").removeClass("clicked");
 			$obj.find(".indicator").addClass("clicked");
 
 			evt.stopPropagation();
 			evt.stopImmediatePropagation();
 			evt.preventDefault();	
+		}
+	}
+
+	function initBlogPostItems(){
+		for (var selection in classesToInit){
+			// Get the object from the object (lol)
+			var c = classesToInit[selection];
+
+			var $collection = $(c.lookup);
+			if ($collection.length){ // If we have any of the objects of the class, initialize them
+
+				$collection.each(function(){
+					c.init($(this));
+				});
+			}
 		}
 	}
 

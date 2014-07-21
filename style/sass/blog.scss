@@ -12,19 +12,6 @@ $contents-entry-z-padding: 1;
 	width: 100%;
 	height: 100px;
 
-	// .blog-post-display-indicator{
-
-	// 	// Make a down arrow 
-	// 	// content: "";
-	// 	width: 0;
-	// 	height: 0;
-	// 	border-top: $table-of-contents-width / 5 solid white;
-
-	// 	border-left: $table-of-contents-width / 2 solid transparent;
-	// 	border-right: $table-of-contents-width / 2 solid transparent;
-	// 	position: relative;
-	// 	display: block;
-	// }
 }
 
 .contents-entry{
@@ -93,4 +80,52 @@ $contents-entry-z-padding: 1;
 .no-posts{
 	text-align: center;
 	font-size: 5em;
+}
+
+/* For all cool blog-post related css */
+
+.post{
+
+	.toggle-section{
+		@include toggle-section;
+
+		& h3{
+			display: block;
+			cursor: pointer;
+			text-indent: 30px;
+
+			&:before{
+				@include h3-triange-right;
+				content: "";
+				color: grey;
+				position: absolute;
+				float: right;
+				padding-left: 0px;
+				margin-top: .2em;
+			}
+		}		
+
+		& .toggle-section-stuff {
+			display: none;
+		}
+
+		& hr{
+			width: 50%;
+		}
+	}
+
+	.toggle-section-clicked{
+		@include toggle-section;
+		& h3:before{
+			@include h3-triange-down;
+			content: "";
+			color: grey;
+			position: absolute;
+			margin-top: .2em;
+		}
+		& .toggle-section-stuff {
+			display: block;
+		}
+	}
+
 }
