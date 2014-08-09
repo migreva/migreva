@@ -267,6 +267,16 @@ body {
       font-size: 90px;
       text-align: center;
       height: 100px; }
+    .data .post .block-quote {
+      width: 80%;
+      margin: 0 auto;
+      background: #04819e;
+      padding: 5px;
+      border-radius: 5px;
+      color: white; }
+      .data .post .block-quote .source {
+        display: block;
+        font-style: italic; }
 
 * {
   -webkit-box-sizing: border-box;

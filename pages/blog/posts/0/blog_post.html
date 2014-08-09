@@ -50,7 +50,9 @@
     <h3>If you speak computer</h3>
     <div class='toggle-section-stuff'>
         <hr>
-        <p>This entire site's navigation is run on JavaScript. The whole website is one page that changes based on input - intercepting click handlers and reading href attrbutes. I did this for a couple reasons, the main one being I didn't really know JavaScript that well and the only way to really learn a language is by working on a project that uses that language. The second reason is that I had some cool animations in mind (some that didn't make the cut) that wouldn't have been possible if the navigation worked off links.</p>
+        <p>This entire site's navigation is run on JavaScript. The whole website is one page that changes based on input - intercepting click handlers and reading href attrbutes. I did this for a couple reasons, the main one being I didn't really know JavaScript that well and the only way to really learn a language is by working on a project that uses that language. It might seem a excessive to use JavaScript for all my navigation, but doing so allowed me to explore JavaScript in a way I might not have been able to had I relied on URL-based navigation. </p>
+        <p>Also, since I was using require.js (see below), I was also encouraged to use module-based JavaScript. JavaScript - inherently not an Object Oriented language - is much easier to use (as all language are) when you can work on a class-based level. As good ol' Linus Torvalds <a href="http://lwn.net/Articles/193245/">once said</a>:</p>
+        <p class='block-quote'>Bad programmers worry about the code. Good programmers worry about data structures and their relationships.<p>
         <hr>
     </div>
 </div>
@@ -120,12 +122,17 @@
     <h3>If you speak computer</h3>
     <div class='toggle-section-stuff'>
         <hr> 
-        <p>If you have a personal website like mine, the latency involved in loading the JavaScript for this site <em>shouldn't</em> deter visitors. I'm not Google, where a millisecond-of-a-millisecond in page loading means a drop in half a billion dollars in revenue. I am, however, still an engineer and care very deeply about how fast my site loads, even if the human eye can't even detect it. That's why I'm so glad I found require.js.</p>
-        <h4>Load all you JavaScript at once</h4>
+        <p>If you have a personal website like mine, the latency involved in loading the JavaScript for this site <em>shouldn't</em> deter visitors. I'm not Google, where a loss of millisecond-of-a-millisecond in page loading means a drop in half a billion dollars in revenue. I am, however, still an engineer and care very deeply about how fast my site loads, even if the human eye can't even detect it. That's why I'm so glad I found require.js.</p>
+        <h4>Load all your JavaScript at once - Debug mode</h4>
         <p>Require.js's main selling point, I think, is how easy it is to load all your JavaScript files all at once. This is the only line needed to load all 5 of my JavaScriptFiles (<a href="http://requirejs.org/docs/api.html#jsfiles">source</a>):</p>
         <pre><code>&lt;script data-main="scripts/main.js" src=./scripts/require.js &gt;&lt;/script&gt;
         </code></pre>
-        <p>Within my <code>main.js</code> file I import all of the JavaScript files I've created, which is actually done by passing them as arguments to the <code>require()</code> function, and by what I assume is black magic that is done by require.js, my files are loaded all at once. </p>
+        <p>Within my <code>main.js</code> file I import all of the JavaScript files I've created, which is actually done by passing them as arguments to the <code>require()</code> function. When this is done, require.js will load them all into the browser one at a time, making it easy for debugging your code on your local setup.</p>
+        <h4>Load all your JavaScript at once - Prod mode</h4>
+        <p>While the above is nice to do while you're developing your site - loading each javascript file un-minified and debuggable - there are still separate HTTP requests for each JavaScript file, which in turn slows down page loading times. However, require.js provides the ability to take each one of the files imported in the above <code>main.js</code> file and combine them into one minified version that is perfect for deploying on a production site.</p>
+        <p>After following the setup steps on the <a href="http://requirejs.org/docs/optimization.html">RequireJS Optimizer page</a>, I ran this one shell command and compiled all my JavaScript into one file</p>
+        <pre><code>node r.js -o baseUrl=. name=main out=main-built.js</code></pre>
+        <p> Now the site you see before you is being run off of one JavaScript file, all minified and delivered to you as fast as possible!</p>
         <h4>OO Encouragement</h4>
         <p>If you've ever learned JavaScript, you know that it is not an Object Oriented language by design. Because of this, a lot of beginners (i.e. me) tend to write large JavaScript files that end up being just function after function, with a couple that run in a $(document).ready() function. However, as I began to learn the language more - most of that being in my work at Qualcomm - I learned about some tricks that people use to make the lanuage appear OO-based, my favorite of which is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures">closures</a>.</p>
         <p>Another great thing that require.js does is almost strongarms you into using module-based programming. Each one of the JavaScript files that you want to be imported via require.js needs to be passed in as a parameter to the function in the aforementioned <code>main.js</code> script. Here is the entire contents of my version of <a href='https://github.com/migreva/migreva.github.io/blob/master/scripts/main.js'><code>main.js</code></a>.</p>

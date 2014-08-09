@@ -53,5 +53,20 @@
 				height: $nav-menu-width;
 			}
 		}
+
+		.block-quote{
+			width: 80%;
+			margin: 0 auto;
+			background: $primary-color;
+			padding: 5px;
+			border-radius: 5px;
+			color: white;
+
+			.source{
+				display: block;
+				font-style: italic;
+
+			}
+		}
 	}
 }
