@@ -1,1 +1,1 @@
-require.config({paths:{blog:"blog"}});require(["index","nav","helpers","lwf","fetch","constants"],function(){fetch=new Fetch;fetch.init();var e=new Nav;e.init();helpers=new Helpers});
+require.config({paths:{blog:"blog"}});window.console||(console={log:function(){}});require(["index","nav","helpers","lwf","fetch","constants"],function(){fetch=new Fetch;fetch.init();var e=new Nav;e.init();helpers=new Helpers});

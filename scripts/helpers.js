@@ -22,7 +22,9 @@ function Helpers(){
  	}
 
  	var fadeOutAndHide = function($object, callback){
- 		$object.animate({opacity: 0}, closure($object, callback));
+ 		$object.addClass("fade").css({opacity : 0});
+ 		setTimeout(closure($object, callback), 500);
+ 		// $object.animate({opacity: 0}, 500, closure($object, callback));
 
  		function closure($object, callback){
  			var $obj = $object;
@@ -37,7 +39,15 @@ function Helpers(){
  	}
 
  	var showAndFadeIn = function($object){
- 		$object.removeClass("display-none").animate({opacity: 1});
+ 		$object.removeClass("display-none");
+ 		setTimeout(closure($object), 100);
+ 		
+ 		function closure($obj){
+ 			var $o = $obj;
+ 			return function(){
+ 				$object.css({opacity : 1});
+ 			}
+ 		}
 
  	}
 

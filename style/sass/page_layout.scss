@@ -3,6 +3,7 @@
 
 .data{
 
+	@include transition(opacity, 500 ease);
 	border-radius: 5px;
 	.post{
 		@include post-text;

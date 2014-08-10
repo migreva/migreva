@@ -176,16 +176,15 @@
 .display-block {
   display: block; }
 
-.fadeIn {
+.fade {
   -webkit-transition: opacity 0.5s ease-in;
   -moz-transition: opacity 0.5s ease-in;
-  transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in; }
+
+.fadeIn {
   opacity: 1; }
 
 .fadeOut {
-  -webkit-transition: opacity 0.5s ease-in;
-  -moz-transition: opacity 0.5s ease-in;
-  transition: opacity 0.5s ease-in;
   opacity: 0; }
 
 .fadeInAnimation {
@@ -201,6 +200,9 @@
 
 .pos-absolute {
   position: absolute; }
+
+.no-height {
+  height: 0px; }
 
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
@@ -227,6 +229,9 @@ body {
   background-color: black; }
 
 .data {
+  -webkit-transition: opacity, 500 ease;
+  -moz-transition: opacity, 500 ease;
+  transition: opacity, 500 ease;
   border-radius: 5px; }
   .data .post {
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;

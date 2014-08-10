@@ -17,14 +17,18 @@
 	display: block;
 }
 
-.fadeIn{ // Fade's in an object if the obj's opacity is 0
+.fade{
 	@include transition(opacity .5s ease-in);
+}
+
+.fadeIn{ // Fade's in an object if the obj's opacity is 0
+	// @include transition(opacity .5s ease-in);
 	opacity: 1;
 }
 
 .fadeOut{ // Fade's in an object if the obj's opacity is 0
 	// @include animation(fadeOut 1.0s ease-in);
-	@include transition(opacity .5s ease-in);
+	// @include transition(opacity .5s ease-in);
 	opacity: 0;
 }
 
@@ -42,4 +46,8 @@
 
 .pos-absolute{
 	position: absolute;
+}
+
+.no-height{
+	height: 0px;
 }

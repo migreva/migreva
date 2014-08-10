@@ -45,7 +45,7 @@ var Nav = function(){
 	}
 
 	function fadeInContent(){
-		$(".content").removeClass("rearrange").addClass("fadeIn");
+		$(".content").removeClass("rearrange").addClass("fade fadeIn");
 	}
 
 	var setUpPage = function(clickedChoice, noAnimation, callback){
@@ -72,6 +72,8 @@ var Nav = function(){
 
 			// Grey out currently selected choice, fade in nav menu
 			$navChoices.removeClass("nav-choices").addClass("nav-choices-menu navMenuSlideOut");
+
+
 			clickedChoice.greyOut();
 
 			// Activate the nav-menu click handler
@@ -83,7 +85,10 @@ var Nav = function(){
 				callback();
 			}
 
-			getPage(clickedChoice);
+			setTimeout(function(){
+				getPage(clickedChoice);
+			}, 200);
+
 		});
 	}
 
@@ -97,18 +102,37 @@ var Nav = function(){
 		}
 	}
 
-	var changePageTitle = function(newTitle){
+	var changePageTitle = function(clickedChoice, newTitle){
 			
 		var $pageTitle = $(".page-title");
-		$pageTitle.get(0).addEventListener("transitionend", changeTitleHandler(newTitle), false);
+		// $pageTitle.get(0).addEventListener("transitionend", changeTitleHandler(newTitle), false);
 		$pageTitle.addClass("page-title-hidden");
+		// helpers.fadeOutAndHide(visiblePageData, closure(url, module));
+		// $(".data:visible").addClass("fadeOut");
+
+		setTimeout(changeTitleHandler(newTitle), 500);
 
 		function changeTitleHandler(t){
 			var title = t;
 			return function(){
 				$(".page-title").text(title).removeClass("page-title-hidden");
+				// $(".data:visible").addClass("display-none");
 			}
 
+		}
+	}
+
+	// Load the page. clickedChoice is of type Choice
+	function getPage(clickedChoice){
+
+		// console.log(clickedChoice.getDivClass());
+		var collection = $(clickedChoice.getDivClass());
+		if (collection.length == 0){
+			var href = clickedChoice.getHref();
+			fetch.getPage(href);			
+		}
+		else{
+			fetch.showPage(clickedChoice.getDivClass());
 		}
 	}
 
@@ -142,7 +166,7 @@ var Nav = function(){
 			clickedChoice.greyOut();
 
 			// Change the page title
-			changePageTitle(clickedChoice.getName());
+			changePageTitle(clickedChoice, clickedChoice.getName());
 
 			// Load the page
 			getPage(clickedChoice);
@@ -211,19 +235,7 @@ var Nav = function(){
 		
 	}
 
-	// Load the page. clickedChoice is of type Choice
-	function getPage(clickedChoice){
 
-		console.log(clickedChoice.getDivClass());
-		var collection = $(clickedChoice.getDivClass());
-		if (collection.length == 0){
-			var href = clickedChoice.getHref();
-			fetch.getPage(href);			
-		}
-		else{
-			fetch.showPage(clickedChoice.getDivClass());
-		}
-	}
 
 
 	var publicAPI = {

@@ -8,6 +8,8 @@ require.config({
 	// waitSeconds: 15
 });
 
+if (!window.console) console = {log : function(){}};
+
 require(["index", "nav", "helpers", "lwf", "fetch", "constants"], function(){
 
 	fetch = new Fetch();

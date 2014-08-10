@@ -27,6 +27,7 @@ var Fetch = function(){
 			if (visiblePageData.length){
 
 				helpers.fadeOutAndHide(visiblePageData, closure(url, module));
+				// loadIntoDom(url, module, pageName);
 
 				// Function that allows for the loadIntoDom callback
 				function closure(url, module, pageName){
