@@ -12,7 +12,7 @@ $(document).ready(function($) {
       bounces: 4,
       duration: 1500,
     }).rotate({
-      from: 0,
+      from: 180,
       to: 360,
       duration: 2000,
       bounce: 5
