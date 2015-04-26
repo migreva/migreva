@@ -1,12 +1,15 @@
-@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+@import './lib/fonts/raleway/raleway.css';
 
 :root {
   --primary-color: #3D4970;
-  --secondary-color: #A59951;
+  --secondary-color: #CBC07E;
 }
 
 body {
   background: var(--primary-color);
   background-color: var(--primary-color);
   color: var(--secondary-color);
+  font-family: 'Raleway';
 }

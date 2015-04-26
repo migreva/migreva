@@ -2,10 +2,14 @@ var gulp = require('gulp');
 var watch = require('gulp-watch');
 var batch = require('gulp-batch');
 
+var rebaseUrls = require('gulp-css-rebase-urls');
+
 // Postcss
 var postcss = require('gulp-postcss');
 var cssnext = require('gulp-cssnext');
 var atImport = require('postcss-import');
+var nested = require('postcss-nested');
+var customProperties = require("postcss-custom-properties")
 
 // Constants
 var STATIC = {
@@ -21,14 +25,26 @@ var cssFiles = cssRoot + '/**/*.css';
 gulp.task('css', function() {
 
   var processors = [
-    cssnext
+    // atImport
+    nested(),
+    customProperties({
+      variables: {
+        primaryColor: '#3D4970',
+        secondaryColor: '#CBC07E',
+      }
+    })
   ];
 
-  return gulp.src(cssFiles)
-          .pipe(cssnext({
-            compress: true,
-          }))
-          .pipe(gulp.dest(cssDist));
+  gulp.src(cssFiles)
+        .pipe(rebaseUrls())
+        // .pipe(postcss([processors]))
+        .pipe(cssnext({
+          // compress: true,
+          sourcemap: true,
+        }))
+        .pipe(gulp.dest(cssDist));
+
+  return;
 });
 
 gulp.task('watch', function() {

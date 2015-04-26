@@ -2,9 +2,27 @@ html
   head
     title= title
 
+    include ./lib/meta.jade
+
     link(href='/dist/css/index.css', rel='stylesheet')
   body
-    .container
-      .text-center
-        .h1 Mike Varano
-        .h2 (.com)
+    .container.index
+      .row.title.text-center
+        .col-md-12
+          .h2 Hey
+          .h1 I'm Mike Varano
+          .h2 I like making stuff
+
+      .row.contact.text-center
+        .col-md-3.col-sm-3.col-xs-3.twitter
+          a(href='https://twitter.com/migreva')
+            i.fa.fa-twitter
+        .col-md-3.col-sm-3.col-xs-3.github
+          a(href='https://github.com/migreva')
+            i.fa.fa-github-alt
+        .col-md-3.col-sm-3.col-xs-3.stack-overflow
+          a(href='http://stackoverflow.com/users/1337683/migreva')
+            i.fa.fa-stack-overflow
+        .col-md-3.col-sm-3.col-xs-3.email
+          a(href='mailto:mikevee313@gmail.com')
+            i.fa.fa-envelope-o

@@ -10,6 +10,7 @@ app.set('view engine', 'jade');
 
 // Static file path
 app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 
 pages(app);
 
