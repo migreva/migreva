@@ -5,24 +5,25 @@ html
     include ./lib/meta.jade
 
     link(href='/dist/css/index.css', rel='stylesheet')
+    script(src='/dist/js/index.js', type='text/javascript')
   body
     .container.index
       .row.title.text-center
         .col-md-12
-          .h2 Hey
+          .h2.thin-text Hey
           .h1 I'm Mike Varano
-          .h2 I like making stuff
+          .h2.thin-text I like making stuff
 
       .row.contact.text-center
-        .col-md-3.col-sm-3.col-xs-3.twitter
+        .contact-link.col-md-3.col-sm-3.col-xs-3.twitter.opacity-0
           a(href='https://twitter.com/migreva')
             i.fa.fa-twitter
-        .col-md-3.col-sm-3.col-xs-3.github
+        .contact-link.col-md-3.col-sm-3.col-xs-3.github.opacity-0
           a(href='https://github.com/migreva')
             i.fa.fa-github-alt
-        .col-md-3.col-sm-3.col-xs-3.stack-overflow
+        .contact-link.col-md-3.col-sm-3.col-xs-3.stack-overflow.opacity-0
           a(href='http://stackoverflow.com/users/1337683/migreva')
             i.fa.fa-stack-overflow
-        .col-md-3.col-sm-3.col-xs-3.email
+        .contact-link.col-md-3.col-sm-3.col-xs-3.email.opacity-0
           a(href='mailto:mikevee313@gmail.com')
             i.fa.fa-envelope-o
