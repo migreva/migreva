@@ -1,0 +1,12 @@
+@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+
+:root {
+  --primary-color: #3D4970;
+  --secondary-color: #A59951;
+}
+
+body {
+  background: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
