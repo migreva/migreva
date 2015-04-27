@@ -15,10 +15,6 @@ var rebaseUrls = require('gulp-css-rebase-urls');
 
 // Postcss
 var postcss = require('gulp-postcss');
-var cssnext = require('gulp-cssnext');
-var atImport = require('postcss-import');
-var nested = require('postcss-nested');
-var customProperties = require("postcss-custom-properties")
 
 // Constants
 var STATIC = {
@@ -41,26 +37,25 @@ var jsSrcFiles = ['index.js'];
 gulp.task('css', function() {
 
   var processors = [
-    // atImport
-    nested(),
-    customProperties({
+    require('postcss-color-function'),
+    require('postcss-url'),
+    require('postcss-nested'),
+    require('postcss-import'),
+    require('postcss-simple-vars')({
       variables: {
         primaryColor: '#3D4970',
-        secondaryColor: '#CBC07E',
+        secondaryColor: '#CBC07E'
       }
+    }),
+    require('postcss-assets')({
+      loadPaths: ['./static/src/css/lib/fonts/raleway/fontFiles/']
     })
   ];
 
-  gulp.src(cssFiles)
-        .pipe(rebaseUrls())
-        // .pipe(postcss([processors]))
-        .pipe(cssnext({
-          // compress: true,
-          sourcemap: true,
-        }))
-        .pipe(gulp.dest(cssDist));
-
-  return;
+  return gulp.src(cssFiles)
+          .pipe(postcss(processors))
+          .pipe(sourcemaps.write('.'))
+          .pipe(gulp.dest(cssDist));
 });
 
 gulp.task('js', function() {

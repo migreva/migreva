@@ -1,22 +1,19 @@
 @import './lib/base.css';
 
-:root {
-  --primary-color: #3D4970;
-  --secondary-color: #CBC07E;
-}
-
 .index {
   margin-top: 10%;
+
+  .row {
+    margin-bottom: 50px;
+  }
 }
 
-.index .row {
-  margin-bottom: 50px;
-}
+.contact {
+  a {
+    color: $secondaryColor !important;
 
-.contact a {
-  color: var(--secondary-color) !important;
-}
-
-.contact a .fa {
-  font-size: 60px;
+    .fa {
+      font-size: 60px;
+    }
+  }
 }

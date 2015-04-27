@@ -1,16 +1,11 @@
-@import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap';
 @import '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
-@import './lib/fonts/raleway/raleway.css';
-
-:root {
-  --primary-color: #3D4970;
-  --secondary-color: #CBC07E;
-}
+@import '//fonts.googleapis.com/css?family=Raleway:400,100,900,500';
 
 body {
-  background: var(--primary-color);
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background: $primaryColor;
+  background-color: $primaryColor;
+  color: $secondaryColor;
   font-family: 'Raleway';
 }
 
@@ -32,4 +27,19 @@ body {
 
 .opactiy-1 {
   opacity: 1;
+}
+
+.button {
+  color: $primaryColor;
+  background: $secondaryColor;
+  display: inline-block;
+  padding: 10px 15px;
+
+  /* TODO remove */
+  font-size: 30px;
+
+  &:hover, &:active {
+  /*.test {*/
+    background: blackness($secondaryColor, 50%);
+  }
 }
