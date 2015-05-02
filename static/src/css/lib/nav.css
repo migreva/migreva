@@ -1,0 +1,43 @@
+.site-nav {
+  position: relative;
+
+  .nav-toggle {
+    width: 40px;
+    margin: 10px;
+    cursor: pointer;
+    /*display: none;*/
+
+    @media (min-width: 992px) {
+      display: inline-block;
+    }
+
+    .bar {
+      height: 5px;
+      margin-bottom: 5px;
+      background: $secondaryColor;
+    }
+  }
+
+  .nav-title {
+    display: inline-block;
+    font-size: 30px;
+    top: 0;
+    position: absolute;
+    margin-top: 5px;
+    text-transform: capitalize;
+  }
+
+  .nav-choices {
+    display: block;
+
+    @media (min-width: 992px) {
+      display: inline-block;
+    }
+
+    .choice {
+      display: block;
+      width: 100px;
+      text-transform: capitalize;
+    }
+  }
+}

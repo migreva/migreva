@@ -4,7 +4,8 @@ module.exports = function(app) {
 
   var page = Page(app, {
     url: '/',
-    template: 'index'
+    template: 'migreva',
+    title: 'Home'
   })
   
   return {

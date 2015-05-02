@@ -1,0 +1,22 @@
+block vars
+
+if pageLoad
+  html
+    head
+      title= title
+
+      include ../lib/meta.jade
+
+      link(href='/dist/css/migreva.css', rel='stylesheet')
+      script(src='/dist/js/migreva.js', type='text/javascript')
+  body
+
+
+  include ./nav
+
+  block content
+
+else 
+  include ./nav
+
+  block content

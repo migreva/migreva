@@ -4,12 +4,11 @@ html
 
     include ./lib/meta.jade
 
-    link(href='/dist/css/index.css', rel='stylesheet')
-    script(src='/dist/js/index.js', type='text/javascript')
-    link(href='http://fonts.googleapis.com/css?family=Raleway:100,400', rel='stylesheet', type='text/css')
+    link(href='/dist/css/migreva.css', rel='stylesheet')
+    script(src='/dist/js/migreva.js', type='text/javascript')
 
   body
-    .container.index
+    .container.index.page-content
       .row.title.text-center
         .col-md-12
           .h2.thin-text Hey
@@ -17,7 +16,7 @@ html
           .h2.thin-text I like making stuff
 
       .row.stuff.text-center
-        a(href='#stuff')
+        a.subpage-nav(href='#stuff', id='stuff')
           .button See some stuff I work on
 
       .row.contact.text-center

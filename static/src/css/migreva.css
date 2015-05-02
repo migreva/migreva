@@ -1,0 +1,47 @@
+/* TODO fix this so we dont have to import from dist */
+@import '../../dist/css/lib/base.css';
+@import '../../dist/css/subpage.css';
+
+.index {
+  margin-top: 10%;
+
+  .row {
+    margin-bottom: 50px;
+  }
+}
+
+.contact {
+  a {
+    color: $secondaryColor !important;
+
+    .fa {
+      font-size: 60px;
+    }
+  }
+}
+
+.loading {
+  background-color: $secondaryColor;
+  background: $secondaryColor;
+}
+
+.page-content {
+  /* Should be container or container fluid */
+  width: 100%;
+
+  margin-left: 100px;
+
+  &.index {
+    position: fixed;
+    margin-left: 0px;
+  }
+
+  & > .row {
+    position: relative;
+  }
+}
+
+.page-content-new {
+  top: -100px;
+  opacity: 0;
+}

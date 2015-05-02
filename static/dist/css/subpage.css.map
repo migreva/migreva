@@ -1,0 +1,1 @@
+{"version":3,"sources":["subpage.css"],"names":[],"mappings":"AAAA,eAAe;;AAMT;;IACE,YAAY;CACb","file":"subpage.css","sourcesContent":["/* Stuff css */\n\n.stuff {\n  .stuff-item {\n\n    .picture {\n      img {\n        width: 50%%;\n      }\n    }\n  }\n}"],"sourceRoot":"/source/"}

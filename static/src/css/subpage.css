@@ -1,0 +1,17 @@
+/* Stuff css */
+
+.stuff {
+  .stuff-item {
+
+    .picture {
+      img {
+        width: 50%;
+        max-height: 250px;
+
+        @media(min-width: 992px) {
+          max-height: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
 var _ = require('lodash');
-var index = require('./index');
+var migreva = require('./migreva');
+var subpages = require('./subpages');
 
 var pages = [
-  index
+  migreva,
+  subpages
 ]
 
 module.exports = function(app) {

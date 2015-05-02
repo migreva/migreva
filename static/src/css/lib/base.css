@@ -1,6 +1,7 @@
 @import 'bootstrap';
 @import '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
 @import '//fonts.googleapis.com/css?family=Raleway:400,100,900,500';
+@import '../../../dist/css/lib/nav.css';
 
 body {
   background: $primaryColor;
@@ -29,6 +30,10 @@ body {
   opacity: 1;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .button {
   color: $primaryColor;
   background: $secondaryColor;
@@ -39,7 +44,11 @@ body {
   font-size: 30px;
 
   &:hover, &:active {
-  /*.test {*/
-    background: blackness($secondaryColor, 50%);
+    background: $primaryColorDarken;
   }
+}
+
+.page-loading {
+  text-align: center;
+  font-size: 100px;
 }

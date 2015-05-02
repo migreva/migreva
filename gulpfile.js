@@ -32,29 +32,39 @@ var cssFiles = cssRoot + '/**/*.css';
 var jsRoot = STATIC.srcRoot + '/js';
 var jsDist = STATIC.distRoot + '/js';
 var jsFiles = jsRoot + '/**/*.js';
-var jsSrcFiles = ['index.js'];
+var jsSrcFiles = ['migreva.js'];
 
 gulp.task('css', function() {
 
   var processors = [
-    require('postcss-color-function'),
-    require('postcss-url'),
     require('postcss-nested'),
-    require('postcss-import'),
+    require('postcss-url'),
+    require('postcss-import')({
+    }),
     require('postcss-simple-vars')({
       variables: {
+        // primary
         primaryColor: '#3D4970',
+        primaryColorDarken: '#8B7E31',
+
+        // secondary
         secondaryColor: '#CBC07E'
       }
     }),
-    require('postcss-assets')({
-      loadPaths: ['./static/src/css/lib/fonts/raleway/fontFiles/']
-    })
+    require("postcss-color-function"),
+    // require('postcss-assets')({
+      // loadPaths: ['./static/src/css/lib/fonts/raleway/fontFiles/']
+    // })
   ];
 
   return gulp.src(cssFiles)
-          .pipe(postcss(processors))
-          .pipe(sourcemaps.write('.'))
+          // .pipe(sourcemaps.init())
+          .pipe(postcss(processors, {
+            map: {
+              inline: true
+            }
+          }))
+          // .pipe(sourcemaps.write('.'))
           .pipe(gulp.dest(cssDist));
 });
 
@@ -62,6 +72,7 @@ gulp.task('js', function() {
   _.forEach(jsSrcFiles, function(file) {
     bundlejs(file);
   });
+  return;
 });
 
 function bundlejs(file) {
@@ -77,13 +88,15 @@ function bundlejs(file) {
   return b.bundle()
           .pipe(source(file))
           .pipe(buffer())
-          .pipe(sourcemaps.init({
-            loadMaps: true,
-            includeContent: true,
-          }))
+          .pipe(sourcemaps.init())
             // .pipe(uglify())
             // .on('error', gutil.log)
-          .pipe(sourcemaps.write('./'))
+          .pipe(sourcemaps.write('./', {
+            // includeContent: true,
+            sourceRoot: '/src',
+            sourceMappingURLPrefix: '/dist/js/'
+
+          }))
           .pipe(gulp.dest(jsDist));
 }
 
@@ -99,3 +112,8 @@ gulp.task('watch', function() {
       .pipe(watch(jsFiles));
   }));
 });
+
+gulp.task('dev', function() {
+  gulp.start('js')
+      .start('css');
+})
