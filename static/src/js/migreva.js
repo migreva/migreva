@@ -1,19 +1,16 @@
-$ = jQuery = window.$ = window.jQuery = require('jQuery');
-var _ = require('lodash');
-var animations = require('./lib/animations');
-var helpers = require('./lib/helpers');
-var subpage = require('./lib/subpage');
+import $ from './lib/$';
+import _each from 'lodash/collections/forEach';
+import animations from './lib/animations';
+import helpers from './lib/helpers';
+import subpage from './lib/subpage';
 
-$(document).ready(function($) {
 
-  $.each($('.contact .contact-link'), function(index) {
-    var $obj = $(this);
+_each($('.contact .contact-link'), function(node, index) {
+  var $obj = $(node);
 
-    // delay each 
-    setTimeout(function() {
-      $obj.removeClass('opacity-0');
-      animations.bounceAnimations.contactAnimation.applyTo($obj);
-    }, 1000 * (index + 1));
-  });
-
+  // delay each
+  setTimeout(function() {
+    $obj.removeClass('opacity-0');
+    animations.bounceAnimations.contactAnimation.applyTo(node);
+  }, 1000 * (index + 1));
 });

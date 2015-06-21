@@ -1,8 +1,8 @@
-$ = jQuery = window.jQuery = window.$ = require('jQuery');
-var _ = require('lodash');
-var Bounce = require('bounce.js');
-var velocity = require('velocity-animate');
-var moment = require('moment');
+import $ from './$';
+import _each from 'lodash/collections/forEach';
+import Bounce from 'bounce.js';
+import Velocity from 'velocity-animate';
+import moment from 'moment';
 
 var cubicBezierEasings = {
   bounceOut: [0.680, -0.550, 0.265, 1.550]
@@ -37,13 +37,13 @@ var slideOutElement = function(selector, done) {
   var srcX = $(selector).offset().left;
   var srcY = destY = 0;
 
-  $(selector).find('.row').each(function(index) {
-    var $obj = $(this);
+  _each($(selector).find('.row'), (function(node, index) {
+    var $obj = $(node);
     setTimeout(function() {
-      $obj.velocity({
+      Velocity(node, {
         'left': destX
       }, cubicBezierEasings.bounceOut, 1000, function() {
-        $obj.remove();
+        node.parentNode.removeChild(node);
         if ($(selector).find('.row').length) return;
 
         $(selector).remove();
@@ -61,13 +61,14 @@ var slideDownElement = function(selector, done) {
 
   if (!$(selector).length) return;
 
-  var currentTop = $(selector).offset().top;
+  var currentTop = $(selector)[0].getBoundingClientRect().top;
 
   $(selector).velocity({
     'opacity': 0,
     'top': currentTop + 100,
   }, 500, function() {
-    $(selector).remove();
+    var el = $(selector)[0];
+    el.parentNode.removeChild(el);
 
     if (done && typeof done === 'function') {
       done();

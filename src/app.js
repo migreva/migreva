@@ -5,12 +5,12 @@ var config = require('./config');
 var pages = require('./pages/pages');
 
 // Template language
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'jade');
 
 // Static file path
-app.use(express.static(path.join(__dirname, 'static')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, '../static')));
+app.use(express.static(path.join(__dirname, '../node_modules')));
 
 pages(app);
 

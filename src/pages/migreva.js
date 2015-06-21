@@ -7,7 +7,7 @@ module.exports = function(app) {
     template: 'migreva',
     title: 'Home'
   })
-  
+
   return {
 
   }
