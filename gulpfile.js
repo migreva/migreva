@@ -26,19 +26,19 @@ var postcss = require('gulp-postcss');
 // Constants
 var STATIC = {
   root: './static/',
-  srcRoot: './static/src',
-  distRoot: './static/dist',
+  srcRoot: './static/src/',
+  distRoot: './static/dist/',
 }
 
 // CSS File paths
-var cssRoot = STATIC.srcRoot + '/css';
-var cssDist = STATIC.distRoot + '/css';
-var sassFiles = cssRoot + '/**/*.scss';
+var cssRoot = STATIC.srcRoot + 'css/';
+var cssDist = STATIC.distRoot + 'css/';
+var sassFiles = cssRoot + '**/*.scss';
 
 // JS File paths
-var jsRoot = STATIC.srcRoot + '/js';
-var jsDist = STATIC.distRoot + '/js';
-var jsFiles = jsRoot + '/**/*.js';
+var jsRoot = STATIC.srcRoot + 'js/';
+var jsDist = STATIC.distRoot + 'js';
+var jsFiles = jsRoot + '**/*.js';
 var jsBundle = ['migreva.js'];
 
 gulp.task('sass', function () {
@@ -105,8 +105,8 @@ function bundlejs(file) {
 gulp.task('watch', function() {
   // https://gist.github.com/RnbWd/2456ef5ce71a106addee
   each(jsBundle, function(fname) {
-    gutil.log('Watching ' + fname + ' ...');
     var filePath = jsRoot + fname;
+    gutil.log('Watching ' + filePath + ' ...');
     gulp.watch(filePath, function() {
       return gulp.src(filePath)
         .pipe(plumber(gutil.log))
@@ -139,13 +139,13 @@ function bundleJs(file, bcb) {
   gutil.log('Browserify is compiling ' + file.path);
   var b = browserify(file.path, { debug: true })
     .transform(babelify.configure({ stage: 0, optional: ['runtime'] }))
-    .transform(pkgify, {
-      packages: {
-        components: './static/js/src/components',
-        framework: './static/js/src/framework',
-      },
-      relative: __dirname
-    })
+    // .transform(pkgify, {
+    //   packages: {
+    //     components: './static/js/src/components',
+    //     framework: './static/js/src/framework',
+    //   },
+    //   relative: __dirname
+    // })
     .transform(reactify)
 
   // Do the necessary thing for tap/plumber

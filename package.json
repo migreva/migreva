@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/migreva/migreva",
   "dependencies": {
+    "babel-runtime": "^5.6.1",
     "babelify": "^6.1.2",
     "bootstrap": "^3.3.4",
     "bounce.js": "^0.8.2",
