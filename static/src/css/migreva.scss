@@ -8,9 +8,23 @@
   .row {
     margin-bottom: 50px;
   }
+
+  .title {
+    text-align: center;
+    font-size: 40px;
+  }
 }
 
 .contact {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+
+  .contact-link {
+    @include span(1/4);
+    text-align: center;
+  }
+
   a {
     color: $secondaryColor !important;
 
@@ -43,4 +57,9 @@
 .page-content-new {
   top: -100px;
   opacity: 0;
+}
+
+#see-stuff {
+  text-align: center;
+  margin-top: 20px;
 }

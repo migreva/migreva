@@ -1,5 +1,5 @@
 import $ from './$';
-import _each from 'lodash/collections/forEach';
+import _each from 'lodash/collection/forEach';
 import Bounce from 'bounce.js';
 import Velocity from 'velocity-animate';
 import moment from 'moment';
@@ -37,7 +37,7 @@ var slideOutElement = function(selector, done) {
   var srcX = $(selector).offset().left;
   var srcY = destY = 0;
 
-  _each($(selector).find('.row'), (function(node, index) {
+  _each($(selector).find('.row'), function(node, index) {
     var $obj = $(node);
     setTimeout(function() {
       Velocity(node, {
@@ -54,6 +54,7 @@ var slideOutElement = function(selector, done) {
         }
       });
     }, 500 * index);
+
   });
 }
 

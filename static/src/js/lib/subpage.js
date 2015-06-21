@@ -1,5 +1,5 @@
 import $ from './$';
-import animations from 'animations';
+import animations from './animations';
 import requests from 'requests';
 
 var PAGELOADING = false;
