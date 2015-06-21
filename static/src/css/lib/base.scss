@@ -1,0 +1,99 @@
+@import '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+@import '//fonts.googleapis.com/css?family=Raleway:400,100,900,500';
+
+$primaryColor: #3D4970;
+$secondaryColor: #CBC07E;
+
+body {
+  background: $primaryColor;
+  background-color: $primaryColor;
+  color: $secondaryColor;
+  font-family: 'Raleway';
+}
+
+.thin-text {
+  font-weight: 100;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opactiy-1 {
+  opacity: 1;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.button {
+  color: $primaryColor;
+  background: $secondaryColor;
+  display: inline-block;
+  padding: 10px 15px;
+
+  /* TODO remove */
+  font-size: 30px;
+
+  &:hover, &:active {
+    background: darken($primaryColor, .7);
+  }
+}
+
+.page-loading {
+  text-align: center;
+  font-size: 100px;
+}
+
+.site-nav {
+  position: relative;
+
+  .nav-toggle {
+    width: 40px;
+    margin: 10px;
+    cursor: pointer;
+    /*display: none;*/
+
+    @media (min-width: 992px) {
+      display: inline-block;
+    }
+
+    .bar {
+      height: 5px;
+      margin-bottom: 5px;
+      background: $secondaryColor;
+    }
+  }
+
+  .nav-title {
+    display: inline-block;
+    font-size: 30px;
+    top: 0;
+    position: absolute;
+    margin-top: 5px;
+    text-transform: capitalize;
+  }
+
+  .nav-choices {
+    display: block;
+
+    @media (min-width: 992px) {
+      display: inline-block;
+    }
+
+    .choice {
+      display: block;
+      width: 100px;
+      text-transform: capitalize;
+    }
+  }
+}

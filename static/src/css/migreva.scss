@@ -1,6 +1,6 @@
 /* TODO fix this so we dont have to import from dist */
-@import '../../dist/css/lib/base.css';
-@import '../../dist/css/subpage.css';
+@import './lib/base';
+@import './subpage';
 
 .index {
   margin-top: 10%;
@@ -26,7 +26,6 @@
 }
 
 .page-content {
-  /* Should be container or container fluid */
   width: 100%;
 
   margin-left: 100px;

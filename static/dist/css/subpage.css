@@ -1,17 +1,7 @@
 /* Stuff css */
-
 .stuff .stuff-item .picture img {
-
-    width: 50%;
-
-    max-height: 250px
-}
-
-@media(min-width: 992px) {
-
+  width: 50%;
+  max-height: 250px; }
+  @media (min-width: 992px) {
     .stuff .stuff-item .picture img {
-
-        max-height: 100%
-    }
-}
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN1YnBhZ2UuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGVBQWU7O0FBTVQ7O0lBQ0UsV0FBVzs7SUFDWCxpQkFBa0I7Q0FLbkI7O0FBSEM7O0lBSkY7O1FBS0ksZ0JBQWlCO0tBRXBCO0NBREUiLCJmaWxlIjoic3VicGFnZS5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTdHVmZiBjc3MgKi9cblxuLnN0dWZmIHtcbiAgLnN0dWZmLWl0ZW0ge1xuXG4gICAgLnBpY3R1cmUge1xuICAgICAgaW1nIHtcbiAgICAgICAgd2lkdGg6IDUwJTtcbiAgICAgICAgbWF4LWhlaWdodDogMjUwcHg7XG5cbiAgICAgICAgQG1lZGlhKG1pbi13aWR0aDogOTkycHgpIHtcbiAgICAgICAgICBtYXgtaGVpZ2h0OiAxMDAlO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59Il19 */
+      max-height: 100%; } }
