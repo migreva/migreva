@@ -6,6 +6,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var watch = require('gulp-watch');
 var batch = require('gulp-batch');
+var sass = require('gulp-sass');
 var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
 var plumber = require('gulp-plumber');
@@ -18,9 +19,6 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var bourbon = require('node-bourbon');
 
-var watch = require('gulp-watch');
-var batch = require('gulp-batch');
-var rebaseUrls = require('gulp-css-rebase-urls');
 
 // Postcss
 var postcss = require('gulp-postcss');
@@ -35,7 +33,7 @@ var STATIC = {
 // CSS File paths
 var cssRoot = STATIC.srcRoot + '/css';
 var cssDist = STATIC.distRoot + '/css';
-var cssFiles = cssRoot + '/**/*.css';
+var sassFiles = cssRoot + '/**/*.scss';
 
 // JS File paths
 var jsRoot = STATIC.srcRoot + '/js';
@@ -43,38 +41,13 @@ var jsDist = STATIC.distRoot + '/js';
 var jsFiles = jsRoot + '/**/*.js';
 var jsBundle = ['migreva.js'];
 
-gulp.task('css', function() {
+gulp.task('sass', function () {
+  var paths = ['./node_modules/', './static/fonts'];
+  paths = paths.concat(bourbon.includePaths);
 
-  var processors = [
-    require('postcss-nested'),
-    require('postcss-url'),
-    require('postcss-import')({
-    }),
-    require('postcss-simple-vars')({
-      variables: {
-        // primary
-        primaryColor: '#3D4970',
-        primaryColorDarken: '#8B7E31',
-
-        // secondary
-        secondaryColor: '#CBC07E'
-      }
-    }),
-    require("postcss-color-function"),
-    // require('postcss-assets')({
-      // loadPaths: ['./static/src/css/lib/fonts/raleway/fontFiles/']
-    // })
-  ];
-
-  return gulp.src(cssFiles)
-          // .pipe(sourcemaps.init())
-          .pipe(postcss(processors, {
-            map: {
-              inline: true
-            }
-          }))
-          // .pipe(sourcemaps.write('.'))
-          .pipe(gulp.dest(cssDist));
+  gulp.src(sassFiles)
+    .pipe(sass({ includePaths: paths }).on('error', sass.logError))
+    .pipe(gulp.dest(cssDist));
 });
 
 gulp.task('browserify', function(cb) {
@@ -149,10 +122,10 @@ gulp.task('watch', function() {
   gutil.log('Watching node modules ...');
   gulp.watch('./src/**/*.js', ['babel']);
 
-  gulp.watch(cssFiles, ['css']);
+  gulp.watch(sassFiles, ['sass']);
 });
 
-gulp.task('default', ['babel', 'browserify', 'css']);
+gulp.task('default', ['babel', 'browserify', 'sass']);
 
 
 // https://gist.github.com/RnbWd/2456ef5ce71a106addee
