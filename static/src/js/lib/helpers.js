@@ -1,5 +1,5 @@
-var animations = require('./animations');
-var Bounce = require('bounce.js');
+import animations from './animations';
+import Bounce from 'bounce.js';
 
 
 module.exports = {

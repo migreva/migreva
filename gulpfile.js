@@ -1,13 +1,22 @@
+var fs = require('fs');
+
+var each = require('lodash/collection/forEach');
+
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var browserify = require('browserify');
-var _ = require('lodash');
-var fs = require('fs');
-var file = require('file');
-var source = require('vinyl-source-stream');
+var watch = require('gulp-watch');
+var batch = require('gulp-batch');
+var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
+var plumber = require('gulp-plumber');
+var tap = require('gulp-tap');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var reactify = require('reactify');
+var pkgify = require('pkgify');
+var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
+var bourbon = require('node-bourbon');
 
 var watch = require('gulp-watch');
 var batch = require('gulp-batch');
@@ -32,7 +41,7 @@ var cssFiles = cssRoot + '/**/*.css';
 var jsRoot = STATIC.srcRoot + '/js';
 var jsDist = STATIC.distRoot + '/js';
 var jsFiles = jsRoot + '/**/*.js';
-var jsSrcFiles = ['migreva.js'];
+var jsBundle = ['migreva.js'];
 
 gulp.task('css', function() {
 
@@ -68,11 +77,30 @@ gulp.task('css', function() {
           .pipe(gulp.dest(cssDist));
 });
 
-gulp.task('js', function() {
-  _.forEach(jsSrcFiles, function(file) {
-    bundlejs(file);
+gulp.task('browserify', function(cb) {
+  var bcb = (function() {
+    var counter = 0;
+    return function() {
+      counter++;
+      if (counter == jsBundle.length) return cb();
+    };
+  })();
+
+  each(jsBundle, function(fname) {
+    var filePath = jsRoot + fname;
+    gulp.src(filePath)
+        .pipe(plumber(gutil.log))
+        .pipe(tap(bundleJs))
+        .pipe(gulp.dest(jsDist))
+        .on('end', function() {
+          gutil.log('Browserify finished creating: ' + filePath);
+          // if (typeof bcb === 'function') bcb();
+        });
   });
-  return;
+});
+
+gulp.task('babel', function() {
+  babelBundle();
 });
 
 function bundlejs(file) {
@@ -100,20 +128,96 @@ function bundlejs(file) {
           .pipe(gulp.dest(jsDist));
 }
 
+// This gulp task now restarts after each JS error yaaaaay
 gulp.task('watch', function() {
+  // https://gist.github.com/RnbWd/2456ef5ce71a106addee
+  each(jsBundle, function(fname) {
+    gutil.log('Watching ' + fname + ' ...');
+    var filePath = jsRoot + fname;
+    gulp.watch(filePath, function() {
+      return gulp.src(filePath)
+        .pipe(plumber(gutil.log))
+        .pipe(tap(bundleJs))
+        .pipe(gulp.dest(jsDist))
+        .on('end', function() {
+          gutil.log('Browserify finished creating: ' + filePath);
+          // if (typeof bcb === 'function') bcb();
+        });
+    });
+  });
 
-  watch(cssFiles, batch(function() {
-    gulp.start('css')
-      .pipe(watch(cssFiles));
-  }));
+  gutil.log('Watching node modules ...');
+  gulp.watch('./src/**/*.js', ['babel']);
 
-  watch(jsFiles, batch(function() {
-    gulp.start('js')
-      .pipe(watch(jsFiles));
-  }));
+  gulp.watch(cssFiles, ['css']);
 });
 
-gulp.task('dev', function() {
-  gulp.start('js')
-      .start('css');
-})
+gulp.task('default', ['babel', 'browserify', 'css']);
+
+
+// https://gist.github.com/RnbWd/2456ef5ce71a106addee
+function bundleJs(file, bcb) {
+
+  if (!fs.existsSync(file.path)) {
+    gutil.log('Could not find ' + file.path + ', ignoring')
+    return;
+  }
+
+  gutil.log('Browserify is compiling ' + file.path);
+  var b = browserify(file.path, { debug: true })
+    .transform(babelify.configure({ stage: 0, optional: ['runtime'] }))
+    .transform(pkgify, {
+      packages: {
+        components: './static/js/src/components',
+        framework: './static/js/src/framework',
+      },
+      relative: __dirname
+    })
+    .transform(reactify)
+
+  // Do the necessary thing for tap/plumber
+  var stream = b.bundle();
+  file.contents = stream;
+
+  // Source map
+  // stream
+  //   .pipe(source(file.path))
+  //   .pipe(buffer())
+  //   // .pipe(sourcemaps.init({loadMaps: true}))
+  //     .on('error', gutil.log)
+  //   //  .pipe(uglify())
+  //   // .pipe(sourcemaps.write('./'))
+  //   .pipe(gulp.dest(jsDist));
+}
+
+function babelBundle() {
+  var src = './src/**/*.js';
+  var dist = './dist';
+
+  gutil.log('Babel is generating ' + src + ' files to ' + dist + ' ...');
+
+  return gulp.src(src)
+    .pipe(plumber(gutil.log))
+    .pipe(babel({ stage: 0, optional: ['runtime'] }))
+    .pipe(gulp.dest(dist))
+    .on('end', function() {
+      gutil.log('Done babelifying');
+    });
+}
+
+function bundleSass() {
+
+  gutil.log('Compiling SASS files ...');
+
+  var paths = ['./node_modules/'];
+  paths.concat(bourbon.includePaths);
+  console.log(paths);
+
+  return gulp.src(cssFiles)
+    .pipe(plumber(gutil.log))
+    .pipe(sass({ includePaths: paths }))
+    .pipe(gulp.dest(cssDist))
+    .on('end', function() {
+      gutil.log('Done compiling SASS files');
+    });
+}

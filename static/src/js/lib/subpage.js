@@ -1,5 +1,6 @@
-$ = jQuery = window.$ = window.jQuery = require('jQuery');
-var animations = require('./animations');
+import $ from './$';
+import animations from 'animations';
+import requests from 'requests';
 
 var PAGELOADING = false;
 var LOADINGDONE = true;
@@ -11,10 +12,11 @@ function done() {
   if (newPageContent) {
     $('body').html($(newPageContent));
 
-    $('.page-content').addClass('page-content-new').velocity({
+    $('.page-content').addClass('page-content-new')
+    Velocity($('.page-content')[0], {
       'top': 0,
       'opacity': 1,
-    }, 500, function() {
+    }, 500, () => {
       $('.page-content-new').removeClass('page-content-new');
     });
   }
@@ -44,11 +46,7 @@ function pageLoadingDone(data) {
 }
 
 var loadPage = function(hash) {
-  $.ajax({
-    url: hash.replace('#', '/'),
-    dataType: 'json',
-    type: 'GET'
-  }).then(function(data) {
+  request.get(hash.replace('#', '/'), function(data) {
     if (!('success' in data) || !data.success || !('page' in data)) {
       console.log('failed to fetch ' + hash);
       return;
@@ -83,5 +81,5 @@ $(document).ready(function() {
 });
 
 module.exports = {
-  loadPage: loadPage 
+  loadPage: loadPage
 }

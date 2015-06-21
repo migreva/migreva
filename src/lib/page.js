@@ -9,7 +9,7 @@ module.exports = function(app, opts) {
   });
 
   console.log('setting up route %s at %s', template, url);
-  
+
   return {
 
   }
