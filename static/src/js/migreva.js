@@ -5,7 +5,7 @@ import helpers from './lib/helpers';
 import subpage from './lib/subpage';
 
 
-$(document).ready(function() {
+$(function() {
   _each($('.contact .contact-link'), function(node, index) {
     var $obj = $(node);
 

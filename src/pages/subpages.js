@@ -22,7 +22,9 @@ module.exports = function(app) {
 
     app.get(generateUrl(subpage), function(req, res) {
 
-      if (helpers.isJsonReq(req)) {
+      console.log(req.header('Content-Type'));
+      if (req.is('application/json')) {
+        console.log('is json');
         // Return json
         res.json({
           success: true,
@@ -32,6 +34,7 @@ module.exports = function(app) {
         });
       }
       else {
+        console.log('is not json');
         res.render('subpages/' + subpage, {
           title: subpage + ' - migreva.com',
           pageLoad: true

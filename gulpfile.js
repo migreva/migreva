@@ -103,11 +103,13 @@ function bundlejs(file) {
 
 // This gulp task now restarts after each JS error yaaaaay
 gulp.task('watch', function() {
+
   // https://gist.github.com/RnbWd/2456ef5ce71a106addee
-  each(jsBundle, function(fname) {
-    var filePath = jsRoot + fname;
-    gutil.log('Watching ' + filePath + ' ...');
-    gulp.watch(filePath, function() {
+  gutil.log('Watching JS files ...');
+  gulp.watch(jsFiles, function() {
+    each(jsBundle, function(fname) {
+      var filePath = jsRoot + fname;
+      gutil.log('Compiling ' + filePath + ' ...');
       return gulp.src(filePath)
         .pipe(plumber(gutil.log))
         .pipe(tap(bundleJs))
@@ -117,7 +119,7 @@ gulp.task('watch', function() {
           // if (typeof bcb === 'function') bcb();
         });
     });
-  });
+  })
 
   gutil.log('Watching node modules ...');
   gulp.watch('./src/**/*.js', ['babel']);

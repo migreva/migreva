@@ -1,6 +1,6 @@
 import $ from './$';
 import animations from './animations';
-import requests from 'requests';
+import request from 'request';
 
 var PAGELOADING = false;
 var LOADINGDONE = true;
@@ -28,6 +28,10 @@ function done() {
 }
 
 function checkDone() {
+  console.log({PAGELOADING,
+   LOADINGDONE,
+   OUTANIMATIONDONE,
+   newPageContent});
   if (PAGELOADING && LOADINGDONE && OUTANIMATIONDONE && newPageContent) {
     done();
   }
@@ -46,18 +50,27 @@ function pageLoadingDone(data) {
 }
 
 var loadPage = function(hash) {
-  request.get(hash.replace('#', '/'), function(data) {
-    if (!('success' in data) || !data.success || !('page' in data)) {
-      console.log('failed to fetch ' + hash);
-      return;
-    }
+  request.get({
+    baseUrl: window.location.origin,
+    url: hash.replace('#', '/'),
+    json: true,
+    // headers: {
+    //   'Content-Type': 'application/json'
+    // }
+  }, function(error, response, body) {
+    if (error) throw new Error(error);
 
-    pageLoadingDone(data.page);
+    // if (!('success' in response) || !response.success || !('page' in response)) {
+    //   console.log('failed to fetch ' + hash);
+    //   return;
+    // }
+
+    pageLoadingDone(body);
   });
 }
 
 var animateOutCurrentPage = function() {
-  animations.slideOutElement('.page-content', function() {
+  animations.slideOutElement('.index-item', function() {
     $('body').html('<div class="jumbotron loading"><div class="row page-loading"><i class="fa fa-spinner"></i></div></div>')
 
     outAnimationDone();
