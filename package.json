@@ -57,7 +57,7 @@
     "postcss-simple-vars": "^0.2.4",
     "postcss-url": "^3.0.0",
     "reactify": "^1.1.1",
-    "requests": "^0.1.6",
+    "request": "^2.58.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
