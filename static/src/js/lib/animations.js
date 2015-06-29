@@ -31,7 +31,7 @@ async function slideOutElement(selector, done) {
   // Apply a Bouncejs transformation to the .content div
   let nodes = [];
   if (selector[0] === '.' || selector[0] === '#') {
-    nodes = selector[0] === '.' ? document.getElementsByClassName(selector.slice(1)) : document.getElementById(selector.slice('#'));
+    nodes = selector[0] === '.' ? document.getElementsByClassName(selector.slice(1)) : [document.getElementById(selector.slice(1))];
     if (nodes.length && !nodes[0]) nodes = [];
   }
   else {
@@ -46,7 +46,7 @@ async function slideOutElement(selector, done) {
 
   // Compile arguments for velocity functions
   let promises = [];
-  _each(document.getElementsByClassName(selector.slice(1)), function(node, index) {
+  _each(nodes, function(node, index) {
     // $(node).addClass('velocity-animate');
     promises.push(velocityPromise(node, {
       left: destX

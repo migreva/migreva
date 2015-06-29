@@ -39,32 +39,56 @@ body {
   font-size: 100px; }
 
 .site-nav {
-  position: relative; }
-  .site-nav .nav-toggle {
-    width: 40px;
-    margin: 10px;
+  position: relative;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 75px; }
+  .site-nav #nav-toggle {
+    width: 50px;
     cursor: pointer;
+    position: relative;
     /*display: none;*/ }
     @media (min-width: 992px) {
-      .site-nav .nav-toggle {
+      .site-nav #nav-toggle {
         display: inline-block; } }
-    .site-nav .nav-toggle .bar {
+    .site-nav #nav-toggle .bar {
+      margin: 0px 2px;
       height: 5px;
       margin-bottom: 5px;
       background: #CBC07E; }
+      .site-nav #nav-toggle .bar:first-child {
+        margin-top: 10px;
+        border-radius: 2px 2px 0px 0px; }
+      .site-nav #nav-toggle .bar:last-child {
+        margin-bottom: 10px;
+        border-radius: 0px 0px 2px 2px; }
   .site-nav .nav-title {
     display: inline-block;
     font-size: 30px;
     top: 0;
     position: absolute;
     margin-top: 5px;
-    text-transform: capitalize; }
-  .site-nav .nav-choices {
-    display: block; }
+    text-transform: capitalize;
+    margin-left: 50px; }
+  .site-nav #nav-choices {
+    display: block;
+    position: absolute;
+    width: 25%;
+    left: -25%; }
     @media (min-width: 992px) {
-      .site-nav .nav-choices {
+      .site-nav #nav-choices {
         display: inline-block; } }
-    .site-nav .nav-choices .choice {
+    .site-nav #nav-choices .choice {
       display: block;
-      width: 100px;
+      width: 100%;
+      height: 50px;
       text-transform: capitalize; }
+      .site-nav #nav-choices .choice a {
+        text-decoration: none;
+        color: #CBC07E; }
+
+#page-content {
+  margin-top: 75px;
+  position: relative; }

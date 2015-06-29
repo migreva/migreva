@@ -3,6 +3,7 @@ import _each from 'lodash/collection/forEach';
 import animations from './lib/animations';
 import helpers from './lib/helpers';
 import subpage from './lib/subpage';
+import framework from './lib/framework';
 
 
 $(document).ready(function() {
