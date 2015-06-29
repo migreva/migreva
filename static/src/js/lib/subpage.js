@@ -41,7 +41,7 @@ function loadPage(hash) {
 function animateOutCurrentPage() {
 
   return new Promise(function(resolve, reject) {
-    animations.slideOutElement('.index-item', function() {
+    animations.slideOutElement('#page-content', function() {
       $('body').html('<div class="jumbotron loading"><div class="row page-loading"><i class="fa fa-spinner"></i></div></div>')
       resolve();
     });
