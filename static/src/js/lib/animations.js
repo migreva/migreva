@@ -29,7 +29,14 @@ let bounceAnimations = {
 
 async function slideOutElement(selector, done) {
   // Apply a Bouncejs transformation to the .content div
-  if (!$(selector).length) return;
+  let nodes = [];
+  if (selector[0] === '.' || selector[0] === '#') {
+    nodes = selector[0] === '.' ? document.getElementsByClassName(selector.slice(1)) : document.getElementById(selector.slice('#'));
+    if (nodes.length && !nodes[0]) nodes = [];
+  }
+  else {
+    nodes = document.getElementsByTagName(selector);
+  }
 
   $('body').addClass('overflow-hidden');
 
@@ -37,10 +44,10 @@ async function slideOutElement(selector, done) {
   let srcX = $(selector)[0].offsetLeft;
   let srcY=0, destY = 0;
 
-
   // Compile arguments for velocity functions
   let promises = [];
-  _each($(selector), function(node, index) {
+  _each(document.getElementsByClassName(selector.slice(1)), function(node, index) {
+    // $(node).addClass('velocity-animate');
     promises.push(velocityPromise(node, {
       left: destX
     }, {
@@ -48,6 +55,10 @@ async function slideOutElement(selector, done) {
       delay: 500 * index,
       easing: cubicBezierEasings.bounceOut
     }));
+
+    setTimeout(function(){
+      console.log('breakpoint');
+    }, 200)
   });
 
   let resolved = await Promise.all(promises);
@@ -55,7 +66,7 @@ async function slideOutElement(selector, done) {
 
   $('body').removeClass('overflow-hidden');
   if (done && typeof done === 'function') {
-    // done();
+    done();
   }
 }
 

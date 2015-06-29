@@ -1,6 +1,5 @@
-import $ from './$';
-import animations from './animations';
-import request from 'request';
+$ = jQuery = window.$ = window.jQuery = require('jQuery');
+var animations = require('./animations');
 
 var PAGELOADING = false;
 var LOADINGDONE = true;
@@ -12,11 +11,10 @@ function done() {
   if (newPageContent) {
     $('body').html($(newPageContent));
 
-    $('.page-content').addClass('page-content-new')
-    Velocity($('.page-content')[0], {
+    $('.page-content').addClass('page-content-new').velocity({
       'top': 0,
       'opacity': 1,
-    }, 500, () => {
+    }, 500, function() {
       $('.page-content-new').removeClass('page-content-new');
     });
   }
@@ -28,10 +26,6 @@ function done() {
 }
 
 function checkDone() {
-  console.log({PAGELOADING,
-   LOADINGDONE,
-   OUTANIMATIONDONE,
-   newPageContent});
   if (PAGELOADING && LOADINGDONE && OUTANIMATIONDONE && newPageContent) {
     done();
   }
@@ -50,22 +44,17 @@ function pageLoadingDone(data) {
 }
 
 var loadPage = function(hash) {
-  request.get({
-    baseUrl: window.location.origin,
+  $.ajax({
     url: hash.replace('#', '/'),
-    json: true,
-    // headers: {
-    //   'Content-Type': 'application/json'
-    // }
-  }, function(error, response, body) {
-    if (error) throw new Error(error);
+    dataType: 'json',
+    type: 'GET'
+  }).then(function(data) {
+    if (!('success' in data) || !data.success || !('page' in data)) {
+      console.log('failed to fetch ' + hash);
+      return;
+    }
 
-    // if (!('success' in response) || !response.success || !('page' in response)) {
-    //   console.log('failed to fetch ' + hash);
-    //   return;
-    // }
-
-    pageLoadingDone(body);
+    pageLoadingDone(data.page);
   });
 }
 
