@@ -55,14 +55,9 @@ async function slideOutElement(selector, done) {
       delay: 500 * index,
       easing: cubicBezierEasings.bounceOut
     }));
-
-    setTimeout(function(){
-      console.log('breakpoint');
-    }, 200)
   });
 
   let resolved = await Promise.all(promises);
-  console.log('Done animating all')
 
   $('body').removeClass('overflow-hidden');
   if (done && typeof done === 'function') {
@@ -93,7 +88,6 @@ function velocityPromise(node, properties, options) {
   return new Promise(function(resolve, reject) {
 
     options.complete = function() {
-      console.log('Done animating ' + $(node));
       resolve();
     }
 
