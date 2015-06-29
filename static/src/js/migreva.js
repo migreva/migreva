@@ -5,8 +5,8 @@ import helpers from './lib/helpers';
 import subpage from './lib/subpage';
 
 
-$(function() {
-  _each($('.contact .contact-link'), function(node, index) {
+$(document).ready(function() {
+  _each(document.getElementsByClassName('contact-link'), function(node, index) {
     var $obj = $(node);
 
     // delay each
