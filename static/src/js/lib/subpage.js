@@ -1,10 +1,11 @@
 import $ from './$.js';
 import animations from './animations';
 import request from 'request';
+import Subpages from './subpages';
 
-var newPageContent;
+let newPageContent;
 
-function done() {
+function done(pageName) {
   if (newPageContent) {
     $('body').html(newPageContent);
 
@@ -19,6 +20,10 @@ function done() {
         $('.page-content-new').removeClass('page-content-new');
       }
     });
+  }
+
+  if (pageName in Subpages) {
+    Subpages[pageName].pageLoaded();
   }
 
   newPageContent = ''
@@ -50,14 +55,16 @@ function animateOutCurrentPage() {
 
 $(document).ready(function() {
   $('body').on('click', '.subpage-nav', async function() {
-    var href = $(this).attr('href');
+    let href = $(this).attr('href');
+    let pageName = href.slice(1);
+
     if (!href) {
       return;
     }
 
     await Promise.all([animateOutCurrentPage(), loadPage(href)]);
 
-    done();
+    done(pageName);
   });
 });
 

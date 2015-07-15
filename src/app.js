@@ -1,8 +1,9 @@
-var express = require('express');
-var path = require('path');
-var app = express();
-var config = require('./config');
-var pages = require('./pages/pages');
+import express from 'express.io';
+import path from 'path';
+import config from './config';
+import migreva from './routes/migreva';
+
+let app = express();
 
 // Template language
 app.set('views', path.join(__dirname, '../views'));
@@ -12,7 +13,7 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, '../static')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
 
-pages(app);
+migreva(app);
 
 if (!config.PROD) {
   var server = app.listen(3000, function () {

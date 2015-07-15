@@ -5,7 +5,6 @@ import helpers from './lib/helpers';
 import subpage from './lib/subpage';
 import framework from './lib/framework';
 
-
 $(document).ready(function() {
   _each(document.getElementsByClassName('contact-link'), function(node, index) {
     var $obj = $(node);
