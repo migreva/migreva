@@ -9,7 +9,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var babelify = require("babelify");
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
-var pkgify = require('pkgify');
 var source = require('vinyl-source-stream');
 
 var jsSrc = './src/client/';
@@ -19,7 +18,7 @@ var jsFiles = jsSrc + '**/*.js';
 /**
  * DEFINE ALL CLIENT JS FILES HERE BY FILENAME
  */
-var jsBundle = [];
+var jsBundle = ['migreva.js'];
 
 /**
  * Gulp task

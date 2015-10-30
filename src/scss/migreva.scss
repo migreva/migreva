@@ -1,5 +1,4 @@
 /* TODO fix this so we dont have to import from dist */
-@import 'jeet/scss/jeet/index.scss';
 @import './lib/base';
 @import './subpage';
 
@@ -22,7 +21,9 @@
   margin-top: 30px;
 
   .contact-link {
-    @include span(1/4);
+    width: 25%;
+    display: inline-block;
+    float: left;
     text-align: center;
   }
 

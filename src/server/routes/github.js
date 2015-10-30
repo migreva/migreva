@@ -1,7 +1,6 @@
-import _map from 'lodash/collection/map';
 import { Router } from 'express';
 import request from 'request';
-import { github } from '../../config';
+import { github } from '../config';
 
 export default class GitHubApi {
   constructor(app) {
@@ -56,20 +55,21 @@ export default class GitHubApi {
 
     let responses = await Promise.all([for (url of urls) this.fetch(url)]);
 
-    let returnVal =  _map(responses, function(resp) {
+    let returnVal = [];
+    for (let resp of responses) {
       console.log(resp.url);
       let match = /repos\/([^\/]+)\/([^\/]+)\/languages/.exec(resp.url);
-      if (!match) return { stats: resp.body }
-      else {
-        return {
+      if (!match) {
+        returnVal.push({ stats: resp.body });
+      } else {
+        returnVal.push({
           username: match[1],
           repo: match[2],
           stats: resp.body
-        }
+        });
       }
-    });
+    }
 
-    console.log(returnVal);
     return returnVal;
   }
 

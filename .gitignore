@@ -1,5 +1,6 @@
+*.swp
 node_modules/
-config.js
+*config.js
 dist/
 public/js
 public/css

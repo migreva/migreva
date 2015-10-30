@@ -1,18 +1,10 @@
-import $ from './lib/$';
-import _each from 'lodash/collection/forEach';
 import animations from './lib/animations';
-import helpers from './lib/helpers';
-import subpage from './lib/subpage';
-import framework from './lib/framework';
 
-$(document).ready(function() {
-  _each(document.getElementsByClassName('contact-link'), function(node, index) {
-    var $obj = $(node);
+for(let node of document.getElementsByClassName('contact-link')) {
 
     // delay each
     setTimeout(function() {
-      $obj.removeClass('opacity-0');
+      node.className = node.className.replace('opacity-0', '');
       animations.bounceAnimations.contactAnimation.applyTo(node);
     }, 1000 * (index + 1));
-  });
-});
+}
