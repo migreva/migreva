@@ -8,13 +8,14 @@ if pageLoad
       include ../lib/meta.jade
 
       link(href='/css/migreva.css', rel='stylesheet')
-      script(src='/js/migreva.js', type='text/javascript')
   body
 
 
   include ./nav
 
   block content
+
+  script(src='/js/migreva.js', type='text/javascript')
 
 else
   include ./nav
