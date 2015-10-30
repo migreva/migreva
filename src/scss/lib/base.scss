@@ -1,0 +1,135 @@
+@import '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+@import '//fonts.googleapis.com/css?family=Raleway:400,100,900,500';
+
+$primaryColor: #3D4970; // purple
+$secondaryColor: #CBC07E; // gold
+
+$nav-height: 75px;
+$nav-toggle-width: 50px;
+
+body {
+  background: $primaryColor;
+  background-color: $primaryColor;
+  color: $secondaryColor;
+  font-family: 'Raleway';
+}
+
+.thin-text {
+  font-weight: 100;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opactiy-1 {
+  opacity: 1;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.button {
+  color: $primaryColor;
+  background: $secondaryColor;
+  display: inline-block;
+  padding: 10px 15px;
+
+  /* TODO remove */
+  font-size: 30px;
+
+  &:hover, &:active {
+    background: darken($secondaryColor, .7);
+  }
+}
+
+.page-loading {
+  text-align: center;
+  font-size: 100px;
+}
+
+
+.site-nav {
+  position: relative;
+  width: 100%;
+  position: fixed;
+  top:0;
+  left: 0;
+  height: $nav-height;
+
+  #nav-toggle {
+    width: $nav-toggle-width;
+    cursor: pointer;
+    position: relative;
+    /*display: none;*/
+
+    @media (min-width: 992px) {
+      display: inline-block;
+    }
+
+    .bar {
+      margin: 0px 2px;
+      height: 5px;
+      margin-bottom: 5px;
+      background: $secondaryColor;
+
+      &:first-child  {
+        margin-top: 10px;
+        border-radius: 2px 2px 0px 0px;
+      }
+
+      &:last-child {
+        margin-bottom: 10px;
+        border-radius: 0px 0px 2px 2px;
+      }
+    }
+  }
+
+  .nav-title {
+    display: inline-block;
+    font-size: 30px;
+    top: 0;
+    position: absolute;
+    margin-top: 5px;
+    text-transform: capitalize;
+    margin-left: $nav-toggle-width;
+
+  }
+
+  #nav-choices {
+    display: block;
+    position: absolute;
+    width: 25%;
+    left: -25%;
+
+    @media (min-width: 992px) {
+      display: inline-block;
+    }
+
+    .choice {
+      display: block;
+      width: 100%;
+      height: 50px;
+      text-transform: capitalize;
+
+      a {
+        text-decoration: none;
+        color: $secondaryColor;
+      }
+    }
+  }
+}
+
+#page-content {
+  margin-top: $nav-height;
+  position: relative;
+}

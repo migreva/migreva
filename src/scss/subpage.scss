@@ -1,0 +1,47 @@
+@import 'jeet/scss/jeet/index.scss';
+/* Stuff css */
+
+.stuff {
+  width: 100%;
+
+  .stuff-item {
+    width: 100%;
+
+    .picture {
+      @include column(1/2);
+      text-align: center;
+
+      img {
+        width: 50%;
+        max-height: 250px;
+
+        @media(min-width: 992px) {
+          max-height: 100%;
+        }
+      }
+    }
+
+    .info {
+      @include column(1/2);
+      text-align: center;
+      .blurb {
+        width: 100%;
+        text-align: center;
+      }
+
+      .stats {
+        width: 100%;
+
+        .languages {
+          width: 100%;
+        }
+
+        .more-info {
+          width: 100%;
+        }
+
+      }
+    }
+
+  }
+}

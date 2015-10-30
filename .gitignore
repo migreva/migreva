@@ -1,3 +1,6 @@
 node_modules/
 config.js
-static/dist
+dist/
+public/js
+public/css
+

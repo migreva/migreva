@@ -1,0 +1,70 @@
+/* TODO fix this so we dont have to import from dist */
+@import 'jeet/scss/jeet/index.scss';
+@import './lib/base';
+@import './subpage';
+
+.index {
+  margin-top: 10%;
+
+  .row {
+    margin-bottom: 50px;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 40px;
+  }
+}
+
+.contact {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+
+  .contact-link {
+    @include span(1/4);
+    text-align: center;
+  }
+
+  a {
+    color: $secondaryColor !important;
+
+    .fa {
+      font-size: 60px;
+    }
+  }
+}
+
+.loading {
+  background-color: $secondaryColor;
+  background: $secondaryColor;
+}
+
+.page-content {
+  width: 100%;
+
+  margin-left: 100px;
+
+  &.index {
+    position: fixed;
+    margin-left: 0px;
+  }
+
+  & > .row {
+    position: relative;
+  }
+}
+
+.page-content-new {
+  top: -100px;
+  opacity: 0;
+}
+
+#see-stuff {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.index-item {
+  position: relative;
+}
