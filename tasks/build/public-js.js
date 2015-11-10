@@ -18,7 +18,7 @@ var jsFiles = jsSrc + '**/*.js';
 /**
  * DEFINE ALL CLIENT JS FILES HERE BY FILENAME
  */
-var jsBundle = ['migreva.js'];
+var jsBundle = ['migreva.js', 'skyline.js'];
 
 /**
  * Gulp task

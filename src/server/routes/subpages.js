@@ -17,29 +17,27 @@ var subpages = [{
   templateName: 'subpages/contact'
 }]
 
-export default function(app) {
 
-  // For each subpage we have, route the URL by name and load the jade temaplte
-  for (let subpage of subpages) {
+// For each subpage we have, route the URL by name and load the jade temaplte
+for (let subpage of subpages) {
 
-    router.get(subpage.url, function(req, res) {
+  router.get(subpage.url, function(req, res) {
 
-      if (req.is('application/json')) {
-        // Return json
-        res.json({
-          success: true,
+    if (req.is('application/json')) {
+      // Return json
+      res.json({
+        success: true,
 
-          // Load the HTML of the jade tempalte
-          page: jade.renderFile(`${app.get('views')}/${subpage.templateName}.jade`)
-        });
-      } else {
-        res.render(subpage.templateName, {
-          title: subpage.name + ' - migreva.com',
-          pageLoad: true
-        });
-      }
-    });
-  }
-
-  app.use(router);
+        // Load the HTML of the jade tempalte
+        page: jade.renderFile(`${app.get('views')}/${subpage.templateName}.jade`)
+      });
+    } else {
+      res.render(subpage.templateName, {
+        title: subpage.name + ' - migreva.com',
+        pageLoad: true
+      });
+    }
+  });
 }
+
+export default router;
