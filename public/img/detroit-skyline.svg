@@ -7,76 +7,76 @@ height: 300
 
 <svg width='1022' height='300'>
     <g class='penobscot'>
-      <path class='top-3' d='M 146,140 v -10 h 14 v 10 h -14' stroke='#000000' fill='white'/>
-      <path class='top-2' d='M 142,150 v -10 h 22 v 10 h -22' stroke='#000000' fill='white'/>
-      <path class='top-1' d='M 137,170 v -20 h 13 c 0 -5, 5 -5, 5 0 h 13 v 40 h -20' stroke='#000000' fill='white'/>
-      <path class='base' d='M 130,300 v -130 h 15 v -10 h 5 v 10 h 5 v -10 h 5 v 10 h 15 v 130 h -45' stroke='#000000' fill='white'/>
-      <path class='light-pole' d='M 149,130 c 1 1, 1 1, 3 -20 h 2 c 1 19, 1 19 3 20 h -4' stroke='#000000' fill='white'/>
+      <path class='top-3' d='M 146,140 v -10 h 14 v 10 z' stroke='#000000' fill='white'/>
+      <path class='top-2' d='M 142,150 v -10 h 22 v 10 z' stroke='#000000' fill='white'/>
+      <path class='top-1' d='M 137,170 v -20 h 13 c 0 -5, 5 -5, 5 0 h 13 v 40 z' stroke='#000000' fill='white'/>
+      <path class='base' d='M 130,300 v -130 h 15 v -10 h 5 v 10 h 5 v -10 h 5 v 10 h 15 v 130 z' stroke='#000000' fill='white'/>
+      <path class='light-pole' d='M 149,130 c 1 1, 1 1, 3 -20 h 2 c 1 19, 1 19 3 20 z' stroke='#000000' fill='white'/>
       <circle class='bulb' stroke='black' fill='red' cx='153' cy='110' r='4'/>
     </g>
 
     <g>
       <path class='top' d='M 128,200 v -15 v 5 h 7 l 10 -5 l 10 5 h 7 v -5 v 15' stroke='#000000' fill='white'/>
-      <path class='base' d='M 110,300 v -110 v 10 h 20 l 15 -10 l 15 10 h 20 v -10 v 110 h -70' stroke='#000000' fill='white'/>
+      <path class='base' d='M 110,300 v -110 v 10 h 20 l 15 -10 l 15 10 h 20 v -10 v 110 z' stroke='#000000' fill='white'/>
     </g>
     <g>
-      <path class='body' d='M 50,300 v -130 h 70 v 130 h -70' stroke='#000000' fill='white'/>
+      <path class='body' d='M 50,300 v -130 h 70 v 130 z' stroke='#000000' fill='white'/>
 
-      <path class='top' d='M 65,170 v -15 h 40 v 15 h -40' stroke='#000000' fill='white'/>
-      <path class='roof' d='M 65,155 l 15 -15 h 10 l 15 15 h -40' stroke='#000000' fill='grey'/>
+      <path class='top' d='M 65,170 v -15 h 40 v 15 z' stroke='#000000' fill='white'/>
+      <path class='roof' d='M 65,155 l 15 -15 h 10 l 15 15 z' stroke='#000000' fill='grey'/>
       <path class='flag' d='M 80,140 v -11 v 1 h -5 v 3 h 5' stroke='#000000' fill='white'/>
       <path class='flag' d='M 90,140 v -11 v 1 h -5 v 3 h 5' stroke='#000000' fill='white'/>
     </g>
     <g>
-      <path d='M 200,300 v -130 h 50 v 130 h -50' stroke='#000000' fill='white'/>
-      <path d='M 215,170 v -20 h 20 v 20 h -20' stroke='#000000' fill='white'/>
+      <path d='M 200,300 v -130 h 50 v 130 z' stroke='#000000' fill='white'/>
+      <path d='M 215,170 v -20 h 20 v 20 z' stroke='#000000' fill='white'/>
     </g>
 
     <g class='one-detroit-center'>
-      <path class='base' d='M 360,300 v -150 h 50 v 150 h -50' stroke='#000000' fill='white'/>
+      <path class='base' d='M 360,300 v -150 h 50 v 150 z' stroke='#000000' fill='white'/>
       <path class='roof' d='M 360,105 h 50 v 45 h -50 v -45' stroke='#000000' fill='#000000'/>
       <path class='roof' d='M 360,100 v 50 l 25,-50 l 25,50 h -50 m 50,0 v -50' stroke='#000000' fill='white'/>
     </g>
 
     <g class='filler'>
-       <path class='base' d='M 375,300 v -100 h 40 v 60 h 20 v 40 h -60' stroke='#000000' fill='white'/>
-       <path class='top' d='M 385,200 v -7 h 20 v 7 h -20' stroke='#000000' fill='white'/>
+       <path class='base' d='M 375,300 v -100 h 40 v 60 h 20 v 40 z' stroke='#000000' fill='white'/>
+       <path class='top' d='M 385,200 v -7 h 20 v 7 z' stroke='#000000' fill='white'/>
     </g>
 
     <g class='learn-the-name'>
-      <path d='M 470,300 v -100 h 30 v 100 h -30' stroke='#000000' fill='white'/>
-      <path class='needle' d='M 484,200 v -30 h 2 v 30 h -2' stroke='#000000' fill='white'/>
+      <path d='M 470,300 v -100 h 30 v 100 z' stroke='#000000' fill='white'/>
+      <path class='needle' d='M 484,200 v -30 h 2 v 30 z' stroke='#000000' fill='white'/>
     </g>
 
 
     <g class='county-building'>
       <path class='base' d='M 600,275 h 40 v 25 h -40 v -25' stroke='#000000' fill='white'/>
 
-      <path class='top' d='M 613,275 v -15 h 1 v -5 h 1 v -3 h 1 c 1 -4, 1 -3, 2 -5 l 1,-4 h 1 l 1,4 c 1 1, 1 3, 2 5 h 1 v 3 h 1 v 5 h 1 v 15 h -16' stroke='#000000' fill='white'/>
+      <path class='top' d='M 613,275 v -15 h 1 v -5 h 1 v -3 h 1 c 1 -4, 1 -3, 2 -5 l 1,-4 h 1 l 1,4 c 1 1, 1 3, 2 5 h 1 v 3 h 1 v 5 h 1 v 15 z' stroke='#000000' fill='white'/>
     </g>
 
     <g class='filler'>
-      <path d='M 430,300 v -50 h 80 v 5 h 20 v -5 h 5 v 5 h 5 v -5 h 15 v 5 h 2 v 25 h 75 v 20 h -200' stroke='#000000' fill='white'/>
+      <path d='M 430,300 v -50 h 80 v 5 h 20 v -5 h 5 v 5 h 5 v -5 h 15 v 5 h 2 v 25 h 75 v 20 z' stroke='#000000' fill='white'/>
     </g>
 
     <g class='renaissance-center'>
       <g class='big-tower'>
         <!-- building -->
-        <path d='M 710,30 v 270 h 60 v -270 h -60' stroke='#000000' fill='transparent'/>
+        <path d='M 710,30 v 270 h 60 v -270 z' stroke='#000000' fill='transparent'/>
         <!-- elevator top -->
         <path d='M 730,20 h 20 v 280 h -20 v -280' stroke='#000000' fill='white'/>
       </g>
       <g class='small-tower'>
         <!-- building -->
-        <path d='M 660,100 v 200 h 60 v -200 h -60' stroke='#000000' fill='white'/>
+        <path d='M 660,100 v 200 h 60 v -200 z' stroke='#000000' fill='white'/>
         <!-- elevator top -->
-        <path d='M 690,90 v 210 h 15 v -210 h -15' stroke='#000000' fill='white'/>
+        <path d='M 690,90 v 210 h 15 v -210 z' stroke='#000000' fill='white'/>
       </g>
       <g class='small-tower'>
         <!-- building -->
-        <path d='M 760,100 v 200 h 60 v -200 h -60' stroke='#000000' fill='white'/>
+        <path d='M 760,100 v 200 h 60 v -200 z' stroke='#000000' fill='white'/>
         <!-- elevator top -->
-        <path d='M 790,90 v 210 h 15 v -210 h -15' stroke='#000000' fill='white'/>
+        <path d='M 790,90 v 210 h 15 v -210 z' stroke='#000000' fill='white'/>
       </g>
     </g>
 
